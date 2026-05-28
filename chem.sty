@@ -1,0 +1,6 @@
+\ProvidesPackage{chem}[2025/12/21 Chemistry Style]
+
+\newcommand*{\dn}[2][]{\M{\ifthenelse{\equal{#1}{}}{\mathrm{#2}}{\mathrm{#2}_{#1}}}}
+\newcommand*{\un}[1]{\ifmmode\,\fi\M{\!{(\dn{#1})}}}
+\newcommand*{\cn}[2][]{\M{\ifthenelse{\equal{#1}{}}{\lbrack{\dn{#2}\rbrack}}{\lbrack{\dn{#2}\rbrack^{#1}}}}}
+\newcommand{\tot}[1]{\M{\,\Sigma{#1}}}

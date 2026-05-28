@@ -1,0 +1,145 @@
+\pdfoutput=1
+\documentclass[a4paper]{base}
+\usepackage{chem}
+
+\newcommand{\pg}[1][1]{\M{\ifthenelse{\equal{#1}{1}}{\psi^{\prime}}{\psi^{(#1)}}}}
+\newcommand{\stoch}[1]{\M{\langle #1 \rangle}}
+\newcommand{\crit}[1]{\M{#1^{*}}}
+\newcommand{\cib}[0]{\M{\beta}}
+\newcommand{\pdn}[1]{\partial_{\,\dn{#1}}}
+
+
+\begin{document}
+    \title{Parametrizing A Population Balance Equation}
+    \author[R.A. Milton]{Robert A. Milton}
+    \email{r.a.milton@sheffield.ac.uk}
+    \address{Department of Chemical, Materials and Biological Engineering, The University of Sheffield, Sheffield~S1~3JD, United Kingdom}
+    \thanks{This work was funded by Solomon f. Brown.}
+    \subjclass[2010]{}
+    \keywords{Asymptotics}
+    \begin{abstract}
+        Surely this cannot be that difficult.
+    \end{abstract}
+    \maketitle
+
+
+\section{Introduction}\label{sec:intro}
+    A plethora of quantities arise in this work, so we endeavour to consistently indicate their nature at a glance.
+    All constants $\norm{\cdot},\stoch{\cdot},\modulus{\cdot}\in\overline{\mathbb{R}^{+}}$ are non-negative, and enclosed in \norm{\cdot} or \stoch{\cdot} without meaning (there are no norms or inner products here), or \modulus{\cdot} only when taking the absolute value of $\cdot$.
+    All italic quantities are dimensionless, to ease the unavoidable chore of tracking units.
+    Undefined notation adheres to the Digital Library of Mathematical Functions \cite{NIST:DLMF}.
+    
+    
+    A number $\dn{n(t,L)}~\un{m^{-4}}$ of particles of length L~\un{m} grow within (each unit of) reactor volume V~\un{m^{3}} as seconds t~\un{s} pass. 
+    Conserving mass, the Population Balance Equation is
+    \begin{equation}\label{eq:Intro:PBE}
+        \begin{aligned}
+            \dn{\partial_{t} (V n(t,L))} &= -\dn{G^{+} \pdn{L} (V \dn{n}(t,L))}\\
+            \dn{n(0, L)} &= 0 \\
+            \dn{n(t,0)} &= \dn{B^{+}/G^{+}}
+        \end{aligned}
+    \end{equation}
+    where $\dn{B^{+}}$ \un{m^{-3}s^{-1}} and $\dn{G^{+}}$ \un{m\,s^{-1}} are particle birth (nucleation) and growth rates. These relate empirically to supersaturation $S>1$:
+    \begin{equation}\label{def:Intro:BG+}
+        \begin{aligned}
+            \QT{birth} \dn{B^{+}} &\deq \norm{\dn{B}} \left(S-1\right)^{+\modulus{b}} \\
+            \QT{growth} \dn{G^{+}} &\deq \norm{\dn{G}} \left(S-1\right)^{+\modulus{g}}
+        \end{aligned}
+    \end{equation}
+    where $(\#)^{+} \deq \max(0, \#)$ denotes the positive part of $(\#)$. In experiments, critical supersaturation $S=1$ might occur many times, but we cannot allow this. We must insist that
+    \begin{equation}\label{def:Intro:crit}
+        \begin{aligned}
+            \QT{supersaturation} S \in \opclo{1}{\sup S} \QT{at all times} \dn{t}>\crit{\dn{t}} \\
+        \end{aligned}
+    \end{equation}
+    for finite supersaturation $\sup{S}\in\bb{R}$ and critical time $\crit{\dn{t}}\in\bb{R}$ at which $S$ first exceeds 1. This is not limiting per se, but it does mean that each critical instant in an experiment theoretically begins a new experiment.
+
+    Given lengthscale $\norm{\dn{L}}\un{m}$ and timescale $\norm{\dn{t}}\un{s}$, dimensionless prefactors are defined as
+    \begin{equation}\label{def:Intro:BG}
+        \begin{aligned}
+            \QT{birth} \norm{B} &\deq \norm{\dn{B}} \norm{\dn{L}}^{3}\norm{\dn{t}} \\
+            \QT{growth} \norm{G} &\deq \norm{\dn{G}} \norm{\dn{L}}^{-1}\norm{\dn{t}}
+        \end{aligned}
+    \end{equation}
+    together with dimensionless
+    \begin{equation}\label{def:Intro:tV}
+        \begin{aligned}
+            \QT{time}\qquad t &\deq \norm{\dn{t}}^{-1} (\dn{t}-\crit{\dn{t}}) \\
+            \QT{volume} V(t) &\deq \norm{\dn{L}}^{-3} \dn{V}
+        \end{aligned}
+    \end{equation}
+    This work aims to elucidate the dimensionless empirical birth and growth parameters $\norm{B},\modulus{b},\norm{G},\modulus{g}$.
+    
+
+\section{The Crystal Size Distribution (CSD)}\label{sec:CSD}
+    The Population Balance Equation conveys a symmetry between synthetic `time' $T$ and `length' $L$ defined as
+    \begin{subequations} \label{def:CSD:TL}
+        \begin{align}
+            S(t) &\deq \max (S,1) \\
+            T &\deq \norm{\dn{L}}^{-1} \dn{\int_{0}^{t} G^{+} \, d{t}} 
+                = \int_{0}^{t} \norm{G} \left(S(\dot{t})-1\right)^{\modulus{g}} \!\dd{\dot{t}} \label{def:CSD:T} \\[3pt]
+            L &\deq T -  \norm{\dn{L}}^{-1} \dn{L}
+        \end{align}
+    \end{subequations}
+    
+    This symmetry manifests in the particle count $N(T)f(T,L)$ defined as
+    \begin{subequations} \label{def:CSD:Nf}
+        \begin{align}
+            N(\bb{R^{-}}) &\deq \set{0} \\
+            N(T) &\deq \dn{\int_{0}^{t} B^{+} V \, d\dot{t}} 
+                = \int_{0}^{t} \norm{B} \left(S(\dot{t})-1\right)^{\modulus{b}} V(\dot{t}) \dd{\dot{t}} \label{def:CSD:N} \\[2pt]
+            f(T,L) &\deq N(T)^{-1} \norm{\dn{L}}^{-1} \dn{V n(t,L)}
+        \end{align}
+    \end{subequations}
+
+    Substituting these variables in Population Balance \Cref{eq:Intro:PBE} immediately yields
+    \begin{equation} \label{sol:CSD:PBE}
+        \begin{aligned}
+            \partial_T N(T) f(T,L) &= 0 \\
+            N(T) f(T, L) &= \partial_{t} N(T)/ \partial_{t} T = \partial_T N(T)
+        \end{aligned}
+    \end{equation}
+    These two lines combine to establish
+    \begin{equation} \label{sol:CSD:N}
+        \begin{aligned}
+            f(T, L) &= N(T)^{-1} \partial_L N(L) \\
+            N(T)^{-1} N(L)  &= \int_{0}^{L} f(T, \dot{L}) \dd{\dot{L}}
+        \end{aligned}
+    \end{equation}
+
+    The Crystal Size Distribution at `time' $T$ is $N(T)^{-1} N(L)$, its probability density $f(T, L)$, and its moments
+    \begin{equation} \label{def:CSD:M}
+        \begin{aligned}
+             M_m(T) &\deq \int_{0}^{T} f(T, L)(T-L)^{m} \dd{L} = N(T)^{-1} m \int_{0}^{T} N(\dot{T})M_{m-1}(\dot{T}) \dd{\dot{T}} \\
+        \end{aligned}
+    \end{equation}
+
+
+\section{Asymptotics for small growth exponent}\label{sec:TE}
+    This Section assumes $\modulus{g}=o(1)$. Defining
+    \begin{equation} \label{def:SGE:s}
+        \begin{aligned}
+            s(t) = \ln S(t)
+        \end{aligned}
+    \end{equation}
+    \Cref{def:CSD:T} integrates by parts to yield
+    \begin{equation} \label{eq:SGE:T}
+        \begin{aligned}
+            T &= \norm{G} \int_{0}^{t} (S(\dot{t})-1)^{{\modulus{g}}} \!\dd{\dot{t}} = \norm{G} \int_{0}^{t} \exp({\modulus{g}}s(\dot{t}))\left(1-\exp(-s(\dot{t}))\right)^{{\modulus{g}}} \!\dd{\dot{t}} \\
+                &= \norm{G} \sum_{k=0}^{\infty} \frac{(-t)^{k}t}{\Gamma(k+2)} \partial_{t}^{k} \left(\exp({\modulus{g}}s(t))\left(1-\exp(-s(t))\right)^{{\modulus{g}}}\right) \\
+                &= \norm{G} (S(t)-1)^{\modulus{g}} t\left(1 + 
+                \sum_{j=1}^{\infty} \modulus{g}^{j} \sum_{k=j}^{\infty} 
+                \frac{(-t)^{k} \, \partial_{t}^{k-j} \left(s(t) + \ln\left(1-\exp(-s(t))\right)\right)^{j}}{(k+1)\Gamma(k-j+1)\Gamma(j+1)} \right)\\
+                &= \norm{G} t (S(t)-1)^{\modulus{g}} \left(1 - \modulus{g}
+                \sum_{k=1}^{\infty} \frac{(-t)^{k} \, \partial_{t}^{k-1} \left(s(t) + \ln\left(1-\exp(-s(t))\right)\right)}{(k+1)\Gamma(k)} 
+                + O(\modulus{g}^{2}) \right) \\
+        \end{aligned}
+    \end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{amsplain} 
+\bibliography{../References}
+\end{document}
+\endinput
