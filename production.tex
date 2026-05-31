@@ -38,7 +38,7 @@
     which crystallizes when its concentration exceeds its equilibrium solubility $\modulus{\dn{K_{S}}}$.
     Crystallization is indicated by the supersaturation (ratio) exceeding unity
         \begin{equation} \label{def:GE:S}
-            S^{\norm{I}} \deq \modulus{\dn{K_{P}}}\modulus{\dn{K_{S}}}^{-1} \cn[\stc{O\!H}]{OH} \prod_{I=1}^{\norm{I}}\cn[\stc{I}]{C_{\mathnormal{I}}} > 1
+            S^{\norm{I}} \deq \modulus{\dn{K_{P}}}\modulus{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \prod_{I=1}^{\norm{I}}\cn[I]{C}^{\stc{I}} > 1
         \end{equation}
     where $\cn{\cdot}$ denotes the free ion concentration, as distinct from the total species concentration $\tot{\cn{\cdot}}$ across all ions.
 
@@ -61,7 +61,7 @@
             \pt \left(\dn{V} \tot{\cn{A}}\right) &= \modulus{\dn{F}} \modulus{F_{\dn{A}}} \norm{\tot{\cn{A}}} \qquad &\un{mol\,h^{-1}}\\
             \pt \left(\dn{V} \tot{\cn{C_{\mathnormal{I}}}}\right) &= \modulus{\dn{F}} \modulus{F_{\dn{C}}} \stc{I} \norm{\tot{\cn{C}}} - \stc{I} \pt \dn{P}  \qquad &\un{mol\,h^{-1}}\\
             \dn{\tot{\cn{A}}_{t=0}} &= \norm{\dn{A}} \deq \modulus{F_{\dn{A}}} \norm{\tot{\cn{A}}} \qquad &\un{mol\,dm^{-3}}\\
-            \dn{\tot{\cn{C_{\mathnormal{I}}}}_{t=0}} &= 0 \qquad &\un{mol\,dm^{-3}}\\
+            \tot{\cn[I]{C}}_{\dn{t=0}} &= 0 \qquad &\un{mol\,dm^{-3}}\\
             \dn{\tot{\cn{P}}_{t=0}} &= 0 \qquad &\un{mol}
         \end{aligned}
     \end{equation}
@@ -80,7 +80,7 @@
             V(t) &\deq \dn{\norm{V}^{-1} V} \\
             \tot{A}(t) &\deq  \dn{\norm{A}}^{-1} \tot{\cn{A}} \\
             \dn{\norm{C}} &\deq \modulus{F_{\dn{C}}} \norm{\tot{\cn{C}}}\ &\un{mol\, dm^{-3}}\\
-            \tot{C}(t) &\deq \stc{I}^{-1} \dn{\norm{C}}^{-1} \tot{\cn{C_{\mathnormal{I}}}} \\
+            \tot{C}(t) &\deq \stc{I}^{-1} \dn{\norm{C}}^{-1} \tot{\cn[I]{C}} \\
             P(t) &\deq \dn{\norm{C}^{-1}\norm{V}^{-1} P} \\
         \end{aligned}
     \end{equation}
@@ -112,32 +112,31 @@
     The dimensional mass balances for A and C therefore take the familiar form
     \begin{equation}\label{eq:Sat:MBD}
         \begin{aligned}
-            \tot{\cn{A}} &= \cn{A} + \dn{K_H}\cn{A}\cn{H}+ \sum_{I=1}^{\norm{I}} \cn{\dn[I]{C}} \sum_{j=1} j\dn[Ij]{K} \cn[j]{A} &\un{mol\, dm^{-3}}\\
-            \tot{\cn{C}} &= \cn{C} + \cn{C} \sum_{j=1} \dn[Ij]{K} \cn[j]{A} &\un{mol\, dm^{-3}}\\
+            \tot{\cn{A}} &= \cn{A} + \dn{K_H}\cn{A}\cn{H}+ \sum_{I=1}^{\norm{I}} \cn[I]{C} \sum_{j=1} j\dn[Ij]{K} \cn{A}^{j} &\un{mol\, dm^{-3}}\\
+            \tot{\cn[I]{C}} &= \cn[I]{C} + \cn[I]{C} \sum_{j=1} \dn[Ij]{K} \cn{A}^{j} &\un{mol\, dm^{-3}}\\
         \end{aligned}
     \end{equation}
     The non-dimensionalization here is as simple as can be: free ion concentration is tracked as a proportion of total concentration.
     \begin{equation}\label{def:Sat:free}
         \begin{aligned}
-            \tau &\deq \norm{\dn{A}}\cn{A} \\
-            c(t) &\deq \cn{C}\tot{\cn{C}}^{-1} \\
-            \eta &\deq \modulus{H} - 14 - \log \dn{K_H}
+            \tau &\deq \sum_{I=1}^{\norm{I}} \stc{I}\ln\cn[I]{C} - \sum_{I=1}^{\norm{I}} \stc{I}\ln\tot{\cn[I]{C}}\\
+            \eta &\deq \log \dn{K_H} + 14 - \modulus{H} \\
+            a(\tau) &\deq (1 + 10^{\eta}) \cn{A}\tot{\cn{A}}^{-1} \\
+            K_{Ij} &\deq \dn[Ij]{K} (1 + 10^{\eta})^{-j} \norm{\dn{A}}^{j} = \dn[Ij]{K} \cn{A}^{j} a(\tau)^{-j} \\
         \end{aligned}
     \end{equation}
     This simple formulation has a powerful consequence: mass balance equations adopt the form of mathematical derivatives with respect to supply (i.e. total concentration). For each cation $\dn{C \in \set{Z,Y,\ldots}}$ define the polynomial
     \begin{equation}\label{def:Sat:Xi}
         \begin{aligned}
-            \Xi_{\dn{C}}(\#) &\deq 1 + \sum_{i=1} \dn[Ij]{K} \left(\dn{\norm{A}}\#\right)^{i} \\
-            \QT{so that} \Xi_{\dn{C}}(a(t)) &\phantom{:}=
-            1 + \sum_{i=1} \dn[Ij]{K} \left(\dn{\norm{A}}a(t)\right)^{i} = 1 + \sum_{i=1} \dn[Ij]{K} \cn[i]{A}
+            \Xi_{I}(a(\tau)) &\deq 1 + \sum_{j=1} K_{Ij} a(\tau)^{j} \\
+            \Xi(a(\tau)) &\deq \prod_{I=1}^{\norm{I}} \Xi_{I}(a(\tau))^{\stc{I}}
         \end{aligned}
     \end{equation}
     Dimensionless mass balances translate \Cref{eq:Sat:MBD} into
     \begin{equation}\label{eq:Sat:MB}
         \begin{aligned}
-            a(0)^{-1} &= (1 + 10^{\eta}) \\
-            a(t)^{-1} &= a(0)^{-1} + \tot{c(t)} \norm{\oplus}\norm{\dn{A}}^{-1} \sum_{\dn{C}} C\, c(t)\, \Xi_{\dn{C}}^{\prime}(a(t)) \\
-            c(t)^{-1} &=  \Xi_{\dn{C}}(a(t))
+            \tau &=  -\ln\Xi(a(\tau)) \\
+            \left(1-a(\tau)\right) \partial_{\tau} \ln a(\tau) &= -\dn{\norm{C}\norm{A}^{-1}} \tot{C(t)}
         \end{aligned}
     \end{equation}
     primes indicating differentiation according to Lagrange/Euler notation.
