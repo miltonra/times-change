@@ -79,7 +79,7 @@
 \newcommand*{\set}[2][]{\M{\left\lbrace\ifthenelse{\equal{#1}{}}{}{#1\: \big\vert \:}{#2}\right\rbrace}}
 
 \newcommand*{\bb}[1]{\M{\mathbb{#1}}}
-\newcommand*{\modulus}[1]{\M{\left\lvert{#1}\right\rvert}}
+\newcommand*{\mds}[1]{\M{\left\lvert{#1}\right\rvert}}
 \newcommand*{\norm}[1]{\M{\left\lVert{#1}\right\rVert}}
 \newcommand*{\closed}[2]{\M{\lbrack{#1,#2}\rbrack}}
 \newcommand*{\open}[2]{\M{({#1,#2})}}

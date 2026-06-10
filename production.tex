@@ -25,7 +25,7 @@
 
 \section{Introduction}\label{sec:intro}
     A plethora of quantities arise in this work, so we endeavour to consistently indicate their nature at a glance.
-    All constants $\norm{\cdot},\stc{\cdot},\modulus{\cdot}\in\overline{\mathbb{R}^{+}}$ are non-negative, including scale \norm{\cdot} and stoichiometry \stc{\cdot}  (to avoid confusion, please note that there are no norms or inner products in this work). Any other constant $\cdot$ be written as $\modulus{\cdot}$.
+    All constants $\norm{\cdot},\stc{\cdot},\mds{\cdot}\in\overline{\mathbb{R}^{+}}$ are non-negative, including scale \norm{\cdot} and stoichiometry \stc{\cdot}  (to avoid confusion, please note that there are no norms or inner products in this work). Any other constant $\cdot$ be written as $\mds{\cdot}$.
     All italic quantities are dimensionless, to ease the unavoidable chore of tracking units.
     Ions are written without charge superscripts (e.g. OH means OH$^{-}$) to lighten notation, as this is a work of mathematics and not chemistry.
     Undefined notation adheres to the Digital Library of Mathematical Functions \cite{NIST:DLMF}.
@@ -34,38 +34,38 @@
     \begin{equation*}
         \dn{P} \rightleftharpoons (\dn[1]{C})_{\stc{1}}(\dn[2]{C})_{\stc{2}}\cdots (\dn[\norm{I}]{C})_{\stc{\norm{I}}} \dn[\stc{O\!H}]{(OH)} \QT{in stoichiometric ratios}  \sum_{I=1}^{\norm{I}} \stc{I} = 1
     \end{equation*}
-    Let $\modulus{\dn{K_P}}$ denote the association (equilibrium) constant of complex $\dn{P}$,
-    which crystallizes when its concentration exceeds its equilibrium solubility $\modulus{\dn{K_{S}}}$.
+    Let $\mds{\dn{K_P}}$ denote the association (equilibrium) constant of complex $\dn{P}$,
+    which crystallizes when its concentration exceeds its equilibrium solubility $\mds{\dn{K_{S}}}$.
     Crystallization is indicated by the supersaturation (ratio) exceeding unity
-        \begin{equation} \label{def:GE:S}
-            S^{\norm{I}} \deq \modulus{\dn{K_{P}}}\modulus{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \prod_{I=1}^{\norm{I}}\cn[I]{C}^{\stc{I}} > 1
-        \end{equation}
+    \begin{equation} \label{def:GE:S}
+        S^{\norm{I}} \deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \prod_{I=1}^{\norm{I}}\cn[I]{C}^{\stc{I}} > 1
+    \end{equation}
     where $\cn{\cdot}$ denotes the free ion concentration, as distinct from the total species concentration $\tot{\cn{\cdot}}$ across all ions.
 
     Crystals of P are manufactured from a steady supply of stoichiometric amounts of $\dn[I]{C}$, A and other ingredients. These flow into a cation-free initial volume $\dn{\norm{V} (dm^{3})}$ of complexing agent at a specially chosen initial concentration $\norm{\dn{A}} (\dn{mol\, dm^{-3}})$. Defining
     \begin{equation} \label{def:intro:Supply}
         \begin{aligned}
-            \T{supply rate: } &\modulus{\dn{F}}\ &(\dn{dm^{3}h^{-1}}) \\
-            \T{complexing agent supply fraction: } & \modulus{F_{\dn{A}}} < 1 \\
+            \T{supply rate: } &\mds{\dn{F}}\ &(\dn{dm^{3}h^{-1}}) \\
+            \T{complexing agent supply fraction: } & \mds{F_{\dn{A}}} < 1 \\
             \T{complexing agent supply concentration: } & \norm{\tot{\cn{A}}}\  &(\dn{mol\, dm^{-3}}) \\
-            \T{all cation supply fraction: } & \modulus{F_{\dn{C}}} \leq 1 - \modulus{F_{\dn{A}}}\\
+            \T{all cation supply fraction: } & \mds{F_{\dn{C}}} \leq 1 - \mds{F_{\dn{A}}}\\
             \T{(individual) cation supply concentration: } & \norm{\tot{\cn{C_{\mathnormal{I}}}}} = \stc{I} \norm{\tot{\cn{C}}} &(\dn{mol\, dm^{-3}})\\
             \T{(variable) crystal yield: } & \dn{P} &\un{mol}\\
-            \T{pH: } & \modulus{H}
+            \T{pH: } & \mds{H}
         \end{aligned}
     \end{equation}
     the manufacturing process amounts to
     \begin{equation} \label{eq:intro:Supply}
         \begin{aligned}
-            \dn{V} &= \dn{\norm{V} + \modulus{F} t} \qquad &\un{dm^{3}} \\
-            \pt \left(\dn{V} \tot{\cn{A}}\right) &= \modulus{\dn{F}} \modulus{F_{\dn{A}}} \norm{\tot{\cn{A}}} \qquad &\un{mol\,h^{-1}}\\
-            \pt \left(\dn{V} \tot{\cn{C_{\mathnormal{I}}}}\right) &= \modulus{\dn{F}} \modulus{F_{\dn{C}}} \stc{I} \norm{\tot{\cn{C}}} - \stc{I} \pt \dn{P}  \qquad &\un{mol\,h^{-1}}\\
-            \dn{\tot{\cn{A}}_{t=0}} &= \norm{\dn{A}} \deq \modulus{F_{\dn{A}}} \norm{\tot{\cn{A}}} \qquad &\un{mol\,dm^{-3}}\\
+            \dn{V} &= \dn{\norm{V} + \mds{F} t} \qquad &\un{dm^{3}} \\
+            \pt \left(\dn{V} \tot{\cn{A}}\right) &= \mds{\dn{F}} \mds{F_{\dn{A}}} \norm{\tot{\cn{A}}} \qquad &\un{mol\,h^{-1}}\\
+            \pt \left(\dn{V} \tot{\cn{C_{\mathnormal{I}}}}\right) &= \mds{\dn{F}} \mds{F_{\dn{C}}} \stc{I} \norm{\tot{\cn{C}}} - \stc{I} \pt \dn{P}  \qquad &\un{mol\,h^{-1}}\\
+            \dn{\tot{\cn{A}}_{t=0}} &= \norm{\dn{A}} \deq \mds{F_{\dn{A}}} \norm{\tot{\cn{A}}} \qquad &\un{mol\,dm^{-3}}\\
             \tot{\cn[I]{C}}_{\dn{t=0}} &= 0 \qquad &\un{mol\,dm^{-3}}\\
             \dn{\tot{\cn{P}}_{t=0}} &= 0 \qquad &\un{mol}
         \end{aligned}
     \end{equation}
-    The specially chosen initial concentration is $\norm{\dn{A}} \deq \modulus{F_{\dn{A}}} \norm{\tot{\cn{A}}}\un{mol\,dm^{-3}}$ to keep $\tot{\cn{A}}$ constant.
+    The specially chosen initial concentration is $\norm{\dn{A}} \deq \mds{F_{\dn{A}}} \norm{\tot{\cn{A}}}\un{mol\,dm^{-3}}$ to keep $\tot{\cn{A}}$ constant.
     The all cation supply concentration is $\norm{\tot{\cn{C}}} = \sum_{I=1}^{\norm{I}} \stc{I} \norm{\tot{\cn{C}}}\un{mol\,dm^{-3}}$, consisting of individual cations in stoichiometric ratios $\stc{I}$.
     The analysis which follows will admit changes of detail (changing ratios, outflow), but such considerations are best deferred: for clarity's sake alone we rigidly specify the system, relaxing unnecessary constraints only at the conclusion.
 
@@ -76,10 +76,10 @@
     Non-dimensionalizing as
     \begin{equation} \label{def:Supply:ND}
         \begin{aligned}
-            t &\deq \dn{\norm{V}^{-1}\modulus{F} t} \\
+            t &\deq \dn{\norm{V}^{-1}\mds{F} t} \\
             V(t) &\deq \dn{\norm{V}^{-1} V} \\
             \tot{A}(t) &\deq  \dn{\norm{A}}^{-1} \tot{\cn{A}} \\
-            \dn{\norm{C}} &\deq \modulus{F_{\dn{C}}} \norm{\tot{\cn{C}}}\ &\un{mol\, dm^{-3}}\\
+            \dn{\norm{C}} &\deq \mds{F_{\dn{C}}} \norm{\tot{\cn{C}}}\ &\un{mol\, dm^{-3}}\\
             \tot{C}(t) &\deq \stc{I}^{-1} \dn{\norm{C}}^{-1} \tot{\cn[I]{C}} \\
             P(t) &\deq \dn{\norm{C}^{-1}\norm{V}^{-1} P} \\
         \end{aligned}
@@ -95,37 +95,45 @@
 
     In practice, mixing may be imperfect, delaying the spread of cations through the reactor volume. The spread is naturally monotonic, and we shall assume that is also linear and the same for all cations. Accordingly, the fraction of the reactor volume actually containing cations at time $t$ is defined as
     \begin{equation} \label{def:Supply:U}
-        U(t) \deq \min \left(1,\frac{\norm{U} t}{1+t}\right) \QT{where} \norm{U} \geq \modulus{F_{\dn{C}}}
+        U(t) \deq \min \left(1,\frac{\norm{U} t}{1+t}\right) \QT{where} \norm{U} \geq \mds{F_{\dn{C}}}
     \end{equation}
     It is assumed that all other ingredients, including complexing agent A, mix perfectly and pervasively.
 
 
 \section{Saturation}\label{sec:Sat}
-    Ionic complex formation is reversibly instantaneous.
-    The aqueous complexing agent A complexes with protons H and cations \dn[I]{C} to form
+    Saturation is the result of aqueous complexing agent A bonding ionically with protons H and cations \dn[I]{C} to form
     \begin{equation}\label{eq:Sat:Complexes}
         \begin{aligned}
-            \dn{(A)(H)} &\QT{with equilibrium constant $\dn{K_H}$.} \\
-            (\dn[I]{C})\dn[j]{(A)} &\QT{with equilibrium constant $\dn[Ij]{K}$.}
+            \dn{(A)(H)} &\QT{with equilibrium constant $\mds{\dn{K_H}}$.} \\
+            (\dn[I]{C})\dn[j]{(A)} &\QT{with equilibrium constant $\mds{\dn[Ij]{K}}$.}
         \end{aligned}
     \end{equation}
-    The dimensional mass balances for A and C therefore take the familiar form
+    Saturation is governed by balancing masses of A and \dn[I]{C} across all ionic complexes
     \begin{equation}\label{eq:Sat:MBD}
         \begin{aligned}
-            \tot{\cn{A}} &= \cn{A} + \dn{K_H}\cn{A}\cn{H}+ \sum_{I=1}^{\norm{I}} \cn[I]{C} \sum_{j=1} j\dn[Ij]{K} \cn{A}^{j} &\un{mol\, dm^{-3}}\\
-            \tot{\cn[I]{C}} &= \cn[I]{C} + \cn[I]{C} \sum_{j=1} \dn[Ij]{K} \cn{A}^{j} &\un{mol\, dm^{-3}}\\
+            \tot{\cn{A}} &= \cn{A} + \mds{\dn{K_H}}\cn{A}\cn{H}+ \sum_{I=1}^{\norm{I}} \cn[I]{C} \sum_{j=1} j\mds{\dn[Ij]{K}} \cn{A}^{j} &\un{mol\, dm^{-3}}\\
+            \tot{\cn[I]{C}} &= \cn[I]{C} + \cn[I]{C} \sum_{j=1} \mds{\dn[Ij]{K}} \cn{A}^{j} &\un{mol\, dm^{-3}}\\
         \end{aligned}
     \end{equation}
-    The non-dimensionalization here is as simple as can be: free ion concentration is tracked as a proportion of total concentration.
+    Ionic complex formation is reversibly instantaneous. This means that the saturation process has no intrinsic sense of time -- the mass balance equations are algebraic, not differential -- or so it appears. Time is exogenous to the saturation process, it felt only through the total species concentrations $\tot{\cn{A}}$ and $\tot{\cn[I]{C}}$ resulting from the supply process.
+
+    Non-dimensionalization naturally introduces dimensionless equilibrium constants \mds{K_{Ij}} and initial free ammonia $\norm{A_{*}}$ as
     \begin{equation}\label{def:Sat:free}
         \begin{aligned}
-            \tau &\deq \sum_{I=1}^{\norm{I}} \stc{I}\ln\cn[I]{C} - \sum_{I=1}^{\norm{I}} \stc{I}\ln\tot{\cn[I]{C}}\\
-            \eta &\deq \log \dn{K_H} + 14 - \modulus{H} \\
-            a(\tau) &\deq (1 + 10^{\eta}) \cn{A}\tot{\cn{A}}^{-1} \\
-            K_{Ij} &\deq \dn[Ij]{K} (1 + 10^{\eta})^{-j} \norm{\dn{A}}^{j} = \dn[Ij]{K} \cn{A}^{j} a(\tau)^{-j} \\
+            \norm{\dn{A_{*}}} &\deq \norm{\dn{A}} \left(1 + \mds{\dn{K_H}} \, 10^{14 - \mds{H}}\right)^{-1} &\un{mol\, dm^{-3}} \\
+            A(\tau) &\deq \norm{\dn{A_{*}}}^{-1} \cn{A} \\
+            \mds{K_{Ij}} &\deq \mds{\dn[Ij]{K}} \norm{\dn{A_{*}}}^{j} = \mds{\dn[Ij]{K}} \cn{A}^{j} a(\tau)^{-j} \\
         \end{aligned}
     \end{equation}
-    This simple formulation has a powerful consequence: mass balance equations adopt the form of mathematical derivatives with respect to supply (i.e. total concentration). For each cation $\dn{C \in \set{Z,Y,\ldots}}$ define the polynomial
+    The key variable linking supply to saturation $S$ is the dimensionless free ammonia $A(\tau)$, varying with dimensionless time $\tau$ yet to be defined.
+    From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So \tot{C}(t) is a natural choice for the sense of time $\tau$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
+    \begin{equation}\label{def:Sat:tau}
+        \begin{aligned}
+            \tau &\deq S-1 = \dn{\norm{S}}^{-1/\norm{I}} \prod_{I=1}^{\norm{I}}\left(\norm{C}\cn[I]{C}\right)^{\stc{I}/\norm{I}} - 1 \\
+            \QT{where} \norm{\dn{S}}^{S} &\deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \prod_{I=1}^{\norm{I}}\cn[I]{C}^{\stc{I}} > 1
+        \end{aligned}
+    \end{equation}
+    The utility of this surprising choice is revealed through the dimensionless polynomials
     \begin{equation}\label{def:Sat:Xi}
         \begin{aligned}
             \Xi_{I}(a(\tau)) &\deq 1 + \sum_{j=1} K_{Ij} a(\tau)^{j} \\
