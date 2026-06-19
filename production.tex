@@ -36,11 +36,12 @@
     \end{equation*}
     Let $\mds{\dn{K_P}}$ denote the association (equilibrium) constant of complex $\dn{P}$,
     which crystallizes when its concentration exceeds its equilibrium solubility $\mds{\dn{K_{S}}}$.
-    Crystallization is indicated by the supersaturation (ratio) exceeding unity
+    Crystallization is indicated by the 3D supersaturation (ratio) exceeding unity
     \begin{equation} \label{def:GE:S}
-        S^{\norm{I}} \deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \prod_{I=1}^{\norm{I}}\cn[I]{C}^{\stc{I}} > 1
+        S^{3} \deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \prod_{I=1}^{\norm{I}}\cn[I]{C}^{\stc{I}} > 1
     \end{equation}
     where $\cn{\cdot}$ denotes the free ion concentration, as distinct from the total species concentration $\tot{\cn{\cdot}}$ across all ions.
+    The 1D supersaturation is $S$. 
 
     Crystals of P are manufactured from a steady supply of stoichiometric amounts of $\dn[I]{C}$, A and other ingredients. These flow into a cation-free initial volume $\dn{\norm{V} (dm^{3})}$ of complexing agent at a specially chosen initial concentration $\norm{\dn{A}} (\dn{mol\, dm^{-3}})$. Defining
     \begin{equation} \label{def:intro:Supply}
@@ -117,20 +118,20 @@
     \end{equation}
     Ionic complex formation is reversibly instantaneous. This means that the saturation process has no intrinsic sense of time -- the mass balance equations are algebraic, not differential -- or so it appears. Time is exogenous to the saturation process, it felt only through the total species concentrations $\tot{\cn{A}}$ and $\tot{\cn[I]{C}}$ resulting from the supply process.
 
-    Non-dimensionalization naturally introduces dimensionless equilibrium constants \mds{K_{Ij}} and initial free ammonia $\norm{A_{*}}$ as
+    Non-dimensionalization naturally introduces dimensionless equilibrium constants \mds{K_{Ij}} and initial free ammonia $\norm{a}$ as
     \begin{equation}\label{def:Sat:free}
         \begin{aligned}
-            \norm{\dn{A_{*}}} &\deq \norm{\dn{A}} \left(1 + \mds{\dn{K_H}} \, 10^{14 - \mds{H}}\right)^{-1} &\un{mol\, dm^{-3}} \\
-            A(\tau) &\deq \norm{\dn{A_{*}}}^{-1} \cn{A} \\
-            \mds{K_{Ij}} &\deq \mds{\dn[Ij]{K}} \norm{\dn{A_{*}}}^{j} = \mds{\dn[Ij]{K}} \cn{A}^{j} a(\tau)^{-j} \\
+            \norm{a} &\deq \norm{\dn{A}} \left(1 + \mds{\dn{K_H}} \, 10^{14 - \mds{H}}\right)^{-1} &\un{mol\, dm^{-3}} \\
+            a(\tau) &\deq \norm{a}^{-1} \cn{A} \\
+            \mds{K_{Ij}} &\deq \mds{\dn[Ij]{K}} \norm{a}^{j} = \mds{\dn[Ij]{K}} \cn{A}^{j} a(\tau)^{-j} \\
         \end{aligned}
     \end{equation}
-    The key variable linking supply to saturation $S$ is the dimensionless free ammonia $A(\tau)$, varying with dimensionless time $\tau$ yet to be defined.
+    The key variable linking supply to saturation $S$ is the dimensionless free ammonia $a(\tau)$, varying with dimensionless time $\tau$ yet to be defined.
     From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So \tot{C}(t) is a natural choice for the sense of time $\tau$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
     \begin{equation}\label{def:Sat:tau}
         \begin{aligned}
-            \tau &\deq S-1 = \dn{\norm{S}}^{-1/\norm{I}} \prod_{I=1}^{\norm{I}}\left(\norm{C}\cn[I]{C}\right)^{\stc{I}/\norm{I}} - 1 \\
-            \QT{where} \norm{\dn{S}}^{S} &\deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \prod_{I=1}^{\norm{I}}\cn[I]{C}^{\stc{I}} > 1
+            \tau &\deq S-1 = \norm{S}^{1/3} \prod_{I=1}^{\norm{I}}\left(\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right)^{\stc{I}/3} - 1 \\
+            \QT{where} \norm{S} &\deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \norm{{C}} \prod_{I=1}^{\norm{I}}\stc{I}^{\stc{I}}
         \end{aligned}
     \end{equation}
     The utility of this surprising choice is revealed through the dimensionless polynomials
@@ -143,8 +144,8 @@
     Dimensionless mass balances translate \Cref{eq:Sat:MBD} into
     \begin{equation}\label{eq:Sat:MB}
         \begin{aligned}
-            \tau &=  -\ln\Xi(a(\tau)) \\
-            \left(1-a(\tau)\right) \partial_{\tau} \ln a(\tau) &= -\dn{\norm{C}\norm{A}^{-1}} \tot{C(t)}
+            \left(1-a(\tau)\right) a(\tau)^{-1} &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} \tot{C}(t) \; \partial_{a(\tau)} \ln \Xi(a(\tau)) \\
+            (1+\tau)^{3}  &= \norm{S} \tot{C}(t) \; \Xi(a(\tau))^{-1} \\
         \end{aligned}
     \end{equation}
     primes indicating differentiation according to Lagrange/Euler notation.
