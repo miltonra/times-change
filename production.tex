@@ -130,7 +130,7 @@
     From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So \tot{C}(t) is a natural choice for the sense of time $\tau$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
     \begin{equation}\label{def:Sat:tau}
         \begin{aligned}
-            \tau &\deq S-1 = \norm{S}^{1/3} \prod_{I=1}^{\norm{I}}\left(\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right)^{\stc{I}/3} - 1 \\
+            \tau &\deq S-1 = \norm{S}^{1/3} \prod_{I=1}^{\norm{I}}\left(U(t)^{-1}\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right)^{\stc{I}/3} - 1 \\
             \QT{where} \norm{S} &\deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \norm{{C}} \prod_{I=1}^{\norm{I}}\stc{I}^{\stc{I}}
         \end{aligned}
     \end{equation}
@@ -145,77 +145,17 @@
     \begin{equation}\label{eq:Sat:MB}
         \begin{aligned}
             \left(1-a(\tau)\right) a(\tau)^{-1} &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} \tot{C}(t) \; \partial_{a(\tau)} \ln \Xi(a(\tau)) \\
-            (1+\tau)^{3}  &= \norm{S} \tot{C}(t) \; \Xi(a(\tau))^{-1} \\
+            (1+\tau)^{3}  &= \norm{S} \tot{C}(t) \; U(t)^{-1} \Xi(a(\tau))^{-1}
         \end{aligned}
     \end{equation}
-    primes indicating differentiation according to Lagrange/Euler notation.
-
-    Saturation is indicated by
-        \begin{equation}\label{def:Sat:isat}
-            \dn{\norm{S}} s(t) > 1
-        \end{equation}
-    where
-    \begin{equation}\label{def:Sat:sat}
+    or
+    \begin{equation}\label{eq:Sat:MB2}
         \begin{aligned}
-            s(t) &\deq \prod_{\dn{C}} \left(c(t)\tot{c(t)U(t)^{-1}}\right)^{C/S} = \dn{\norm{S}^{-1}S} \\
-            \norm{\dn{S}}^{S} &\deq \dn{K_{P} K_{S}^{-1}} 10^{(h-14)H} \norm{\oplus} \prod_{\dn{C}} C^{C} \\
+            \ln \Xi(a(\tau)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - 3 \ln (1+\tau) \\
+            \left(1-a(\tau)\right) \partial_{\tau} \ln a(\tau) &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} 
+            \left(\partial_{\tau} \tot{C}(t) - \tot{C}(t) \partial_{\tau} \ln \left((1+\tau)^{3}U(t)\right)\right) \\
         \end{aligned}
     \end{equation}
-    Note that saturation is local to the volume fraction $U(t)$ containing cations. The total cation concentration in this region is conveniently expressed as
-    \begin{equation}\label{eq:Sat:sat}
-        \begin{aligned}
-            \tot{c(t)U(t)^{-1}} &\phantom{:} = p(t) \norm{U}^{-1} \max \left(1, \frac{\norm{U}t}{1+t}\right) \\
-            \QT{where} p(t)&\deq 1 - t^{-1} P(t)
-        \end{aligned}
-    \end{equation}
-
-    Let us expand about $t=\overline{t}$ using
-    \begin{equation}\label{eq:Sat:sat}
-        \begin{aligned}
-            \overline{a}&\deq a(\overline{t}) \\
-            \overline{p} &\deq p(\overline{t}) \\
-            \overline{u} &\deq \tot{c(\overline{t})} = \overline{p} \overline{t} (1+\overline{t})^{-1}\\
-            \overline{U}&\deq U(\overline{t}) = \min \left(1, \norm{U} \overline{p}^{-1} \overline{u}\right)\\
-            \overline{s}&\deq s(\overline{t}) \\
-            \norm{E} &\deq \norm{\oplus}\norm{\dn{A}}^{-1} \\
-            E(\#) &\deq \norm{E} \sum_{\dn{C}} C\, \ln \Xi_{\dn{C}}(\#) \\
-            \overline{E^{\prime}} &\deq \overline{u} \;\overline{a}E^{\prime}(\overline{a}) \QT{;} \overline{E^{\prime\prime}} \deq \overline{u} \;\overline{a}^{2} E^{\prime\prime}(\overline{a}) \QT{; etc.} \\
-            \tilde{u}(t) &\deq \tot{c(t)}-\overline{u} \\
-            \norm{\tilde{u}} &\deq \overline{E^{\prime}}^{-1} \left(1+\overline{E^{\prime\prime}}\right)^{2} \overline{u} \\
-            u(t) &\deq \norm{\tilde{u}}^{-1} \tilde{u}(t) \\
-        \end{aligned}
-    \end{equation}
-    \Cref{eq:Sat:MB} becomes
-    \begin{equation}\label{eq:Sat:exp}
-        \begin{aligned}
-            a(t)^{-1} &= \overline{a}^{-1} + \tilde{u}(t)E^{\prime}(a(t)) + \overline{u} \left(E^{\prime}(a(t))-E^{\prime}(\overline{a})\right) \\
-            S \ln s(t) &= S \ln \overline{s} + \ln \frac{\tilde{u}(t)+\overline{u}}{\overline{u}} - \ln \frac{U(t)}{\overline{U}}
-             - \frac{E(a(t))-E(\overline{a})}{\norm{E}}
-        \end{aligned}
-    \end{equation}
-    which has the asymptotic solution
-    \begin{equation}\label{sol:Sat:exp}
-        \begin{aligned}
-            \frac{a(t)}{\overline{a}} &= 1 - u(t) \left(1+\overline{E^{\prime\prime}}\right)
-            \left(1 - u(t)\left(
-            \frac{\overline{E^{\prime\prime}}}{\overline{E^{\prime}}}\left(1+\overline{E^{\prime\prime}}\right) + 1-\frac{\overline{E^{\prime\prime\prime}}}{2}\right) + O\left(u(t)^{2}\right)\right) \\
-            S \ln \frac{s(t)}{\overline{s}} &= \ln \frac{p(t)}{\overline{p}} + \left(\ln \frac{\norm{U}t}{1+t}\right)^{\!\!+}
-            - \left(\ln \frac{\norm{U}\overline{t}}{1+\overline{t}}\right)^{\!\!+} \\
-            &+ u(t) \frac{\left(1+\overline{E^{\prime\prime}}\right)^{3}}{\norm{\tilde{u}}\norm{E}}
-            \left(1 - u(t)\left(
-            \frac{3\overline{E^{\prime\prime}}}{2\overline{E^{\prime}}}\left(1+\overline{E^{\prime\prime}}\right) + 1-\frac{\overline{E^{\prime\prime\prime}}}{2}\right) + O\left(u(t)^{2}\right)\right) \\
-        \end{aligned}
-    \end{equation}
-
-    The point of expansion $\overline{t}$ is chosen to achieve a saturation ratio $\dn{\overline{S}}$ by (numerically) solving
-    \begin{equation}\label{eq:Sat:fsat}
-        \begin{aligned}
-            S \ln \dn{\norm{S}} + S \ln \overline{s} \deqr S \ln \dn{\overline{S}}  &= S \ln \dn{\norm{S}} + \ln \overline{p} - \ln \norm{U}
-             + \left(\ln \frac{\norm{U}\overline{t}}{1+\overline{t}}\right)^{\!\!+} - \norm{E}^{-1} E(\overline{a}) \\
-            \overline{a}^{-1} &= a(0)^{-1} + \overline{u}E^{\prime}(\overline{a})
-        \end{aligned}
-    \end{equation}
-    The positive part $(\#)^{+}$ in these equations is 0 unless $\overline{U}=1$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
