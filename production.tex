@@ -165,6 +165,14 @@
             \right) \\
         \end{aligned}
     \end{equation}
+    Integrating
+    \begin{equation}\label{eq:Sat:MB2}
+        \begin{aligned}
+            \ln a(\tau) + (1-a(\tau)) - \ln a(0) - (1 - a(0)) &= \norm{I}\dn{\norm{C}\norm{A}^{-1}}
+            \left(\tot{C}(t) - \tot{C}(t(0)) - \tot{C}(t) \ln \left((1+\tau)^{3}U(t)\right)\right) \\
+            &+ \norm{I}\dn{\norm{C}\norm{A}^{-1}} \int_{0}^{\tau} \partial_{\tau}\tot{C}(t) \ln \left((1+\tau)^{3}U(t)\right) d\tau
+        \end{aligned}
+    \end{equation}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
