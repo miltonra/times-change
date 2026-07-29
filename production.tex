@@ -127,10 +127,10 @@
         \end{aligned}
     \end{equation}
     The key variable linking supply to saturation $S$ is the dimensionless free ammonia $a(\tau)$, varying with dimensionless time $\tau$ yet to be defined.
-    From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So \tot{C}(t) is a natural choice for the sense of time $\tau$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
+    From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So $\tot{C}(t)$ is a natural choice for the sense of time $\tau$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
     \begin{equation}\label{def:Sat:tau}
         \begin{aligned}
-            \tau &\deq S-1 = \norm{S}^{1/3} \prod_{I=1}^{\norm{I}}\left(U(t)^{-1}\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right)^{\stc{I}/3} - 1 \\
+            \tau &\deq 3 \ln S = \ln \norm{S} + \sum_{I=1}^{\norm{I}} \stc{I} \ln \left(U(t)^{-1}\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right) \\
             \QT{where} \norm{S} &\deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \norm{{C}} \prod_{I=1}^{\norm{I}}\stc{I}^{\stc{I}}
         \end{aligned}
     \end{equation}
@@ -138,39 +138,54 @@
     \begin{equation}\label{def:Sat:Xi}
         \begin{aligned}
             \Xi_{I}(a(\tau)) &\deq 1 + \sum_{j=1} K_{Ij} a(\tau)^{j} \\
-            \Xi(a(\tau)) &\deq \prod_{I=1}^{\norm{I}} \Xi_{I}(a(\tau))^{\stc{I}}
+            \Xi(a(\tau)) &\deq \prod_{I=1}^{\norm{I}} \Xi_{I}(a(\tau))^{\stc{I}} \\
+            E(a(\tau)) &\deq \ln \Xi(a(\tau))
         \end{aligned}
     \end{equation}
     Dimensionless mass balances translate \Cref{eq:Sat:MBD} into
-    \begin{equation}\label{eq:Sat:MB}
+    \begin{subequations}\label{eq:Sat:MB}
+        \begin{align}
+            \left(1-a(\tau)\right) \partial_{\tau} \ln a(\tau) &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} \tot{C}(t) \; \partial_{\tau} E(a(\tau)) \label{eq:Sat:MBa} \\
+            E(a(\tau)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - \tau \label{eq:Sat:MBb}
+        \end{align}
+    \end{subequations}
+
+
+\section{Initial Expansion}\label{sec:Exp}
+    This Section assumes initial mixing is imperfect and precipitation is negligible
+    \begin{equation}\label{eq:Sat:Xi}
         \begin{aligned}
-            \left(1-a(\tau)\right) a(\tau)^{-1} &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} \tot{C}(t) \; \partial_{a(\tau)} \ln \Xi(a(\tau)) \\
-            (1+\tau)^{3}  &= \norm{S} \tot{C}(t) \; U(t)^{-1} \Xi(a(\tau))^{-1}
+            U(t) < 1 \\
+            P(t) = 0
         \end{aligned}
     \end{equation}
-    or
-    \begin{equation}\label{eq:Sat:MB2}
+    Under these conditions, \Cref{eq:Sat:MBb} entails
+    \begin{equation}\label{eq:Exp:0b}
         \begin{aligned}
-            \ln \Xi(a(\tau)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - 3 \ln (1+\tau) \\
-            \left(1-a(\tau)\right) \partial_{\tau} \ln a(\tau) &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} 
-            \left(\partial_{\tau} \tot{C}(t) - \tot{C}(t) \partial_{\tau} \ln \left((1+\tau)^{3}U(t)\right)\right) \\
+            E(a(\tau)) &= \ln \norm{S} - \ln \norm{U} - \tau \\
+            \partial_{\tau} E(a(\tau)) &= E^{\prime}(a(\tau)) a^{\prime}(\tau) = -1 \\
+            a^{\prime\prime}(\tau) &= E^{\prime\prime}(a(\tau))E^{\prime}(a(\tau))^{-2} \\
         \end{aligned}
     \end{equation}
-    or
-    \begin{equation}\label{eq:Sat:MB2}
+    \Cref{eq:Sat:MBa} then implies
+    \begin{equation}\label{eq:Exp:0a}
         \begin{aligned}
-            \ln \Xi(a(\tau)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - 3 \ln (1+\tau) \\
-            \left(1-a(\tau)\right) \partial_{\tau} \ln a(\tau) &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} 
-            U(t) (1+\tau)^{3} \; \partial_{\tau} \left(\frac{\tot{C}(t)}{U(t)(1+\tau)^{3}}
-            \right) \\
+            \frac{1}{1+t} &= 1 - \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}}\frac{\left(1-a(\tau)\right)}{a(\tau)E^{\prime}(a(\tau))} \\
+            \partial_{\tau} t &= \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}}\left(a(\tau)(1-a(\tau))E^{\prime\prime}(a(\tau)) - 1\right) 
+            \left(a(\tau)E^{\prime}(a(\tau)) - \frac{\dn{\norm{A}}(1-a(\tau))}{\norm{I}\dn{\norm{C}}}\right)^{-2}
         \end{aligned}
     \end{equation}
-    Integrating
-    \begin{equation}\label{eq:Sat:MB2}
+    Defining $\alpha$ as the solution of
+        \begin{equation}\label{def:Sat:Xi}
         \begin{aligned}
-            \ln a(\tau) + (1-a(\tau)) - \ln a(0) - (1 - a(0)) &= \norm{I}\dn{\norm{C}\norm{A}^{-1}}
-            \left(\tot{C}(t) - \tot{C}(t(0)) - \tot{C}(t) \ln \left((1+\tau)^{3}U(t)\right)\right) \\
-            &+ \norm{I}\dn{\norm{C}\norm{A}^{-1}} \int_{0}^{\tau} \partial_{\tau}\tot{C}(t) \ln \left((1+\tau)^{3}U(t)\right) d\tau
+            \ln \Xi(\alpha) &= \ln \norm{S} - \ln \norm{U} \\
+        \end{aligned}
+    \end{equation}
+    and
+    \begin{equation}\label{def:Sat:Xi}
+        \begin{aligned}
+            \norm{E} &\deq \ln \Xi(\alpha) \\
+            \norm{E^{n\prime}} &\deq \partial_{\alpha}^{n} \ln \Xi(\alpha)  \quad\forall n>1 \\
         \end{aligned}
     \end{equation}
 
