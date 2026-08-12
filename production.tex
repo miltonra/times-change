@@ -130,7 +130,7 @@
     From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So $\tot{C}(t)$ is a natural choice for the sense of time $\tau$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
     \begin{equation}\label{def:Sat:tau}
         \begin{aligned}
-            \tau &\deq 3 \ln S = \ln \norm{S} + \sum_{I=1}^{\norm{I}} \stc{I} \ln \left(U(t)^{-1}\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right) \\
+            \tau &\deq \ln S = \frac{\ln \norm{S}}{3} + \frac{1}{3}\sum_{I=1}^{\norm{I}} \stc{I} \ln \left(U(t)^{-1}\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right) \\
             \QT{where} \norm{S} &\deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \norm{{C}} \prod_{I=1}^{\norm{I}}\stc{I}^{\stc{I}}
         \end{aligned}
     \end{equation}
@@ -145,8 +145,9 @@
     Dimensionless mass balances translate \Cref{eq:Sat:MBD} into
     \begin{subequations}\label{eq:Sat:MB}
         \begin{align}
-            \left(1-a(\tau)\right) \partial_{\tau} \ln a(\tau) &= \norm{I}\dn{\norm{C}\norm{A}^{-1}} \tot{C}(t) \; \partial_{\tau} E(a(\tau)) \label{eq:Sat:MBa} \\
-            E(a(\tau)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - \tau \label{eq:Sat:MBb}
+            \tot{C(t)} &= \frac{t}{1+t} \left(1-t^{-1}P(t)\right) 
+                = \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}} \frac{1-a(\tau)}{a(\tau)E^{\prime}(a(\tau))} \label{eq:Sat:MBa} \\
+            E(a(\tau)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - 3\tau \label{eq:Sat:MBb}
         \end{align}
     \end{subequations}
 
@@ -156,36 +157,37 @@
     \begin{equation}\label{eq:Sat:Xi}
         \begin{aligned}
             U(t) < 1 \\
-            P(t) = 0
+            P(t) = o(t)
         \end{aligned}
     \end{equation}
     Under these conditions, \Cref{eq:Sat:MBb} entails
     \begin{equation}\label{eq:Exp:0b}
         \begin{aligned}
-            E(a(\tau)) &= \ln \norm{S} - \ln \norm{U} - \tau \\
-            \partial_{\tau} E(a(\tau)) &= E^{\prime}(a(\tau)) a^{\prime}(\tau) = -1 \\
-            a^{\prime\prime}(\tau) &= E^{\prime\prime}(a(\tau))E^{\prime}(a(\tau))^{-2} \\
+            E(a(\tau)) &= \ln \norm{S} - \ln \norm{U} - 3\tau  + \ln \left(1-t^{-1}P(t)\right)\\
+            \partial_{\tau} E(a(\tau)) &= E^{\prime}(a(\tau)) a^{\prime}(\tau) = -3 + \partial_{\tau} \ln \left(1-t^{-1}P(t)\right)
         \end{aligned}
     \end{equation}
-    \Cref{eq:Sat:MBa} then implies
+    Differentiating \Cref{eq:Sat:MBa}
     \begin{equation}\label{eq:Exp:0a}
         \begin{aligned}
-            \frac{1}{1+t} &= 1 - \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}}\frac{\left(1-a(\tau)\right)}{a(\tau)E^{\prime}(a(\tau))} \\
-            \partial_{\tau} t &= \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}}\left(a(\tau)(1-a(\tau))E^{\prime\prime}(a(\tau)) - 1\right) 
-            \left(a(\tau)E^{\prime}(a(\tau)) - \frac{\dn{\norm{A}}(1-a(\tau))}{\norm{I}\dn{\norm{C}}}\right)^{-2}
+            \partial_{\tau}\tot{C}(t) &= 
+                \left(1-t^{-1}P(t)\right) \left(\frac{\partial_{\tau}t}{(1+t)^{2}} + \left(\frac{t}{1+t}\right) \partial_{\tau} \ln \left(1-t^{-1}P(t)\right) \right) \\
+            &= \left(\partial_{a(\tau)}\tot{C}(t)\right) \left(-3 + \partial_{\tau} \ln \left(1-t^{-1}P(t)\right)\right) \\
+            \partial_{\tau}^{\,2} \tot{C}(t) &= 
+                \left(1-t^{-1}P(t)\right) \partial_{\tau} \ln \left(1-t^{-1}P(t)\right) \left(\frac{2\,\partial_{\tau}t}{(1+t)^{2}} + \left(\frac{t}{1+t}\right) \partial_{\tau} \ln \left(1-t^{-1}P(t)\right) \right) \\
+                &\phantom{=\ }+ \left(1-t^{-1}P(t)\right) \left(\partial_{\tau} \left(\frac{\partial_{\tau}t}{(1+t)^{2}}\right)
+                      + \left(\frac{t}{1+t}\right) \partial_{\tau}^{\,2} \ln \left(1-t^{-1}P(t)\right) \right) \\
+            &= \left(\partial_{a(\tau)}^{\,2} \tot{C}(t)\right) \left(-3 + \partial_{\tau} \ln \left(1-t^{-1}P(t)\right)\right)^{2}
+             + \left(\partial_{a(\tau)} \tot{C}(t)\right) \partial_{\tau}^{\,2} \ln \left(1-t^{-1}P(t)\right) \\
         \end{aligned}
     \end{equation}
-    Defining $\alpha$ as the solution of
-        \begin{equation}\label{def:Sat:Xi}
+    where
+    \begin{equation}\label{eq:Exp:0a}
         \begin{aligned}
-            \ln \Xi(\alpha) &= \ln \norm{S} - \ln \norm{U} \\
-        \end{aligned}
-    \end{equation}
-    and
-    \begin{equation}\label{def:Sat:Xi}
-        \begin{aligned}
-            \norm{E} &\deq \ln \Xi(\alpha) \\
-            \norm{E^{n\prime}} &\deq \partial_{\alpha}^{n} \ln \Xi(\alpha)  \quad\forall n>1 \\
+            \partial_{a(\tau)}\tot{C}(t) &= -\tot{C}(t) \frac{E^{\prime\prime}(a(\tau))}{E^{\prime}(a(\tau))} - \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}} \frac{1}{a(\tau)^{2}E^{\prime}(a(\tau))}\\ 
+            \partial_{a(\tau)}^{\,2}\tot{C}(t)
+            &= \frac{2\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}}\frac{E^{\prime}(a(\tau)) + a(\tau) E^{\prime\prime}(a(\tau))}
+            {a(\tau)^{3}E^{\prime}(a(\tau))^{2}} + \tot{C}(t) \frac{2 E^{\prime\prime}(a(\tau))^{2} - E^{\prime}(a(\tau)) E^{\prime\prime\prime}(a(\tau))}{E^{\prime}(a(\tau))^2}
         \end{aligned}
     \end{equation}
 

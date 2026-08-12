@@ -49,10 +49,11 @@
     where $(\#)^{+} \deq \max(0, \#)$ denotes the positive part of $(\#)$. In experiments, critical supersaturation $S=1$ might occur many times, but we cannot allow this. We must insist that
     \begin{equation}\label{def:Intro:crit}
         \begin{aligned}
-            \QT{supersaturation} S \in \opclo{1}{\sup S} \QT{at all times} \dn{t}>\crit{\dn{t}} \\
+            \QT{supersaturation} S \in \opclo{1}{\sup S} \QT{at all times} \dn{t}>\crit{\dn{t}}
         \end{aligned}
     \end{equation}
-    for finite supersaturation $\sup{S}\in\bb{R}$ and critical time $\crit{\dn{t}}\in\bb{R}$ at which $S$ first exceeds 1. This is not limiting per se, but it does mean that each critical instant in an experiment theoretically begins a new experiment.
+    for finite supersaturation $\sup{S}\in\bb{R}$ and critical time $\crit{\dn{t}}\in\bb{R}$ at which $S$ first exceeds 1. This is not limiting per se, but it does mean that each critical instant in an experiment theoretically begins a new experiment. 
+    Throughout this work, an asterisk always denotes the critical instant $t=S-1=0$
 
     Given lengthscale $\norm{\dn{L}}\un{m}$ and timescale $\norm{\dn{t}}\un{s}$, dimensionless prefactors are defined as
     \begin{equation}\label{def:Intro:BG}
@@ -115,23 +116,24 @@
     \end{equation}
 
 
-\section{Asymptotics for small growth exponent}\label{sec:TE}
-    This Section assumes $\mds{g}=o(1)$. Defining
+\section{Initial Growth}\label{sec:TE}
+    Assuming that supersaturation grows exponentially at the start of the experiment, we define
     \begin{equation} \label{def:SGE:s}
         \begin{aligned}
-            s(t) = \ln S(t)
+            \tau &\deq 3 \ln S(t) \\
+            t &\deq \mds{\partial_{\tau}t^{*}} \tau + O\left(\mds{\partial_{\tau}^{\,2}t^{*}}\frac{\tau^{2}}{2}\right)
         \end{aligned}
     \end{equation}
     \Cref{def:CSD:T} integrates by parts to yield
     \begin{equation} \label{eq:SGE:T}
         \begin{aligned}
-            T &= \norm{G} \int_{0}^{t} (S(\dot{t})-1)^{{\mds{g}}} \!\dd{\dot{t}} = \norm{G} \int_{0}^{t} \exp({\mds{g}}s(\dot{t}))\left(1-\exp(-s(\dot{t}))\right)^{{\mds{g}}} \!\dd{\dot{t}} \\
-                &= \norm{G} \sum_{k=0}^{\infty} \frac{(-t)^{k}t}{\Gamma(k+2)} \partial_{t}^{k} \left(\exp({\mds{g}}s(t))\left(1-\exp(-s(t))\right)^{{\mds{g}}}\right) \\
+            T &= \norm{G} \int_{0}^{t} (S(\dot{t})-1)^{{\mds{g}}} \!\dd{\dot{t}} = \norm{G} \int_{0}^{t} \exp({\mds{g}}\tau)\left(1-\exp(-\tau)\right)^{{\mds{g}}} \!\dd{\dot{t}} \\
+                &= \norm{G} \sum_{k=0}^{\infty} \frac{(-t)^{k}t}{\Gamma(k+2)} \partial_{t}^{k} \left(\exp({\mds{g}}\tau)\left(1-\exp(-\tau)\right)^{{\mds{g}}}\right) \\
                 &= \norm{G} (S(t)-1)^{\mds{g}} t\left(1 + 
                 \sum_{j=1}^{\infty} \mds{g}^{j} \sum_{k=j}^{\infty} 
-                \frac{(-t)^{k} \, \partial_{t}^{k-j} \left(s(t) + \ln\left(1-\exp(-s(t))\right)\right)^{j}}{(k+1)\Gamma(k-j+1)\Gamma(j+1)} \right)\\
+                \frac{(-t)^{k} \, \partial_{t}^{k-j} \left(\tau + \ln\left(1-\exp(-\tau)\right)\right)^{j}}{(k+1)\Gamma(k-j+1)\Gamma(j+1)} \right)\\
                 &= \norm{G} t (S(t)-1)^{\mds{g}} \left(1 - \mds{g}
-                \sum_{k=1}^{\infty} \frac{(-t)^{k} \, \partial_{t}^{k-1} \left(s(t) + \ln\left(1-\exp(-s(t))\right)\right)}{(k+1)\Gamma(k)} 
+                \sum_{k=1}^{\infty} \frac{(-t)^{k} \, \partial_{t}^{k-1} \left(\tau + \ln\left(1-\exp(-\tau)\right)\right)}{(k+1)\Gamma(k)} 
                 + O(\mds{g}^{2}) \right) \\
         \end{aligned}
     \end{equation}
