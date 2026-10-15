@@ -26,7 +26,7 @@
 \section{Introduction}\label{sec:intro}
     A plethora of quantities arise in this work, so we endeavour to consistently indicate their nature at a glance.
     All constants $\norm{\cdot},\stoch{\cdot},\mds{\cdot}\in\overline{\mathbb{R}^{+}}$ are non-negative, and enclosed in \norm{\cdot} or \stoch{\cdot} without meaning (there are no norms or inner products here), or \mds{\cdot} only when taking the absolute value of $\cdot$.
-    All italic quantities are dimensionless, to ease the unavoidable chore of tracking units.
+    All \M{italic} quantities are dimensionless, to ease the unavoidable chore of tracking units.
     Undefined notation adheres to the Digital Library of Mathematical Functions \cite{NIST:DLMF}.
     
     
@@ -71,6 +71,16 @@
     \end{equation}
     This work aims to elucidate the dimensionless empirical birth and growth parameters $\norm{B},\mds{b},\norm{G},\mds{g}$.
     
+
+\section{Asymptotic Taylor Expansion}\label{sec:Taylor}
+    \begin{subequations} \label{def:CSD:TL}
+        \begin{align}
+            S(t) &\deq \max (S,1) \\
+            T &\deq \norm{\dn{L}}^{-1} \dn{\int_{0}^{t} G^{+} \, d{t}} 
+                = \int_{0}^{t} \norm{G} \left(S(\dot{t})-1\right)^{\mds{g}} \!\dd{\dot{t}} \label{def:CSD:T} \\[3pt]
+            L &\deq T -  \norm{\dn{L}}^{-1} \dn{L}
+        \end{align}
+    \end{subequations}
 
 \section{The Crystal Size Distribution (CSD)}\label{sec:CSD}
     The Population Balance Equation conveys a symmetry between synthetic `time' $T$ and `length' $L$ defined as
