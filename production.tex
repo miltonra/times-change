@@ -122,71 +122,72 @@
     \begin{equation}\label{def:Sat:free}
         \begin{aligned}
             \norm{a} &\deq \norm{\dn{A}} \left(1 + \mds{\dn{K_H}} \, 10^{14 - \mds{H}}\right)^{-1} &\un{mol\, dm^{-3}} \\
-            a(S) &\deq \norm{a}^{-1} \cn{A} \\
-            \mds{K_{Ij}} &\deq \mds{\dn[Ij]{K}} \norm{a}^{j} = \mds{\dn[Ij]{K}} \cn{A}^{j} a(S)^{-j} \\
+            a(\tau) &\deq \norm{a}^{-1} \cn{A} \\
+            \mds{K_{Ij}} &\deq \mds{\dn[Ij]{K}} \norm{a}^{j} = \mds{\dn[Ij]{K}} \cn{A}^{j} a(\tau)^{-j} \\
         \end{aligned}
     \end{equation}
-    The key variable linking supply to saturation $S$ is the dimensionless free ammonia $a(S)$, varying with dimensionless time $S$ yet to be defined.
-    From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So $\tot{C}(t)$ is a natural choice for the sense of time $S$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
+    The key variable linking supply to saturation $S$ is the dimensionless free ammonia $a(\tau)$, varying with dimensionless time $\tau$ yet to be defined.
+    From \Cref{sec:Supply} \tot{\cn{A}} is constant and $\tot{\cn[I]{C}} = \stc{I}\tot{\cn{C}}$ is essentially a single function of time which drives everything relevant to saturation. So $\tot{C}(t)$ is a natural choice for the sense of time $\tau$. But this single source of time of course affects supersaturation itself, and only really interests us in so far as it does. So the convenient measure of time is supersaturation itself
     \begin{equation}\label{def:Sat:tau}
         \begin{aligned}
-            \ln S &\phantom{:}= \frac{\ln \norm{S}}{3} + \frac{1}{3}\sum_{I=1}^{\norm{I}} \stc{I} \ln \left(U(t)^{-1}\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right) \\
+            \tau &\deq \ln S = \frac{\ln \norm{S}}{3} + \frac{1}{3}\sum_{I=1}^{\norm{I}} \stc{I} \ln \left(U(t)^{-1}\stc{I}^{-1}\norm{{C}}^{-1}\cn[I]{C}\right) \\
             \QT{where} \norm{S} &\deq \mds{\dn{K_{P}}}\mds{\dn{K_{S}}}^{-1} \cn{OH}^{\stc{O\!H}} \norm{{C}} \prod_{I=1}^{\norm{I}}\stc{I}^{\stc{I}}
         \end{aligned}
     \end{equation}
     The utility of this surprising choice is revealed through the dimensionless polynomials
     \begin{equation}\label{def:Sat:Xi}
         \begin{aligned}
-            \Xi_{I}(a(S)) &\deq 1 + \sum_{j=1} K_{Ij} a(S)^{j} \\
-            \Xi(a(S)) &\deq \prod_{I=1}^{\norm{I}} \Xi_{I}(a(S))^{\stc{I}} \\
-            E(a(S)) &\deq \ln \Xi(a(S))
+            \Xi_{I}(a(\tau)) &\deq 1 + \sum_{j=1} K_{Ij} a(\tau)^{j} \\
+            \Xi(a(\tau)) &\deq \prod_{I=1}^{\norm{I}} \Xi_{I}(a(\tau))^{\stc{I}} \\
+            E(a(\tau)) &\deq \ln \Xi(a(\tau))
         \end{aligned}
     \end{equation}
     Dimensionless mass balances translate \Cref{eq:Sat:MBD} into
     \begin{subequations}\label{eq:Sat:MB}
         \begin{align}
             \tot{C(t)} &= \frac{t}{1+t} \left(1-t^{-1}P(t)\right) 
-                = \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}} \frac{1-a(S)}{a(S)E^{\prime}(a(S))} \label{eq:Sat:MBa} \\
-            E(a(S)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - 3\ln S \label{eq:Sat:MBb}
+                = \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}} \frac{1-a(\tau)}{a(\tau)E^{\prime}(a(\tau))} \label{eq:Sat:MBa} \\
+            E(a(\tau)) &= \ln \norm{S} + \ln \tot{C}(t) - \ln U(t) - 3\tau \label{eq:Sat:MBb}
         \end{align}
     \end{subequations}
 
 
-\section{Imperfect Mixing}\label{sec:Exp}
+\section{Initial Expansion}\label{sec:Exp}
     This Section assumes initial mixing is imperfect and precipitation is negligible
     \begin{equation}\label{eq:Sat:Xi}
         \begin{aligned}
             U(t) < 1 \\
+            P(t) = o(t)
         \end{aligned}
     \end{equation}
     Under these conditions, \Cref{eq:Sat:MBb} entails
     \begin{equation}\label{eq:Exp:0b}
         \begin{aligned}
-            E(a(S)) &= \ln \norm{S} - \ln \norm{U} - 3\ln S + \ln \left(1-t^{-1}P(t)\right)\\
-            \partial_{S} E(a(S)) &= E^{\prime}(a(S)) a^{\prime}(S) = -3 S^{-1} + \partial_{S} \ln \left(1-t^{-1}P(t)\right)
+            E(a(\tau)) &= \ln \norm{S} - \ln \norm{U} - 3\tau  + \ln \left(1-t^{-1}P(t)\right)\\
+            \partial_{\tau} E(a(\tau)) &= E^{\prime}(a(\tau)) a^{\prime}(\tau) = -3 + \partial_{\tau} \ln \left(1-t^{-1}P(t)\right)
         \end{aligned}
     \end{equation}
     Differentiating \Cref{eq:Sat:MBa}
     \begin{equation}\label{eq:Exp:0a}
         \begin{aligned}
-            \partial_{S}\tot{C}(t) &= 
-                \left(1-t^{-1}P(t)\right) \left(\frac{\partial_{S}t}{(1+t)^{2}} + \left(\frac{t}{1+t}\right) \partial_{S} \ln \left(1-t^{-1}P(t)\right) \right) \\
-            &= \left(\partial_{a(S)}\tot{C}(t)\right) \left(-3 S^{-1} + \partial_{S} \ln \left(1-t^{-1}P(t)\right)\right) \\
-            \partial_{S}^{\,2} \tot{C}(t) &= 
-                \left(1-t^{-1}P(t)\right) \partial_{S} \ln \left(1-t^{-1}P(t)\right) \left(\frac{2\,\partial_{S}t}{(1+t)^{2}} + \left(\frac{t}{1+t}\right) \partial_{S} \ln \left(1-t^{-1}P(t)\right) \right) \\
-                &\phantom{=\ }+ \left(1-t^{-1}P(t)\right) \left(\partial_{S} \left(\frac{\partial_{S}t}{(1+t)^{2}}\right)
-                      + \left(\frac{t}{1+t}\right) \partial_{S}^{\,2} \ln \left(1-t^{-1}P(t)\right) \right) \\
-            &= \left(\partial_{a(S)}^{\,2} \tot{C}(t)\right) \left(-3 S^{-1} + \partial_{S} \ln \left(1-t^{-1}P(t)\right)\right)^{2} \\
-             &\phantom{=\ }+ \left(\partial_{a(S)} \tot{C}(t)\right) \left(3S^{-2} + \partial_{S}^{\,2} \ln \left(1-t^{-1}P(t)\right)\right)
+            \partial_{\tau}\tot{C}(t) &= 
+                \left(1-t^{-1}P(t)\right) \left(\frac{\partial_{\tau}t}{(1+t)^{2}} + \left(\frac{t}{1+t}\right) \partial_{\tau} \ln \left(1-t^{-1}P(t)\right) \right) \\
+            &= \left(\partial_{a(\tau)}\tot{C}(t)\right) \left(-3 + \partial_{\tau} \ln \left(1-t^{-1}P(t)\right)\right) \\
+            \partial_{\tau}^{\,2} \tot{C}(t) &= 
+                \left(1-t^{-1}P(t)\right) \partial_{\tau} \ln \left(1-t^{-1}P(t)\right) \left(\frac{2\,\partial_{\tau}t}{(1+t)^{2}} + \left(\frac{t}{1+t}\right) \partial_{\tau} \ln \left(1-t^{-1}P(t)\right) \right) \\
+                &\phantom{=\ }+ \left(1-t^{-1}P(t)\right) \left(\partial_{\tau} \left(\frac{\partial_{\tau}t}{(1+t)^{2}}\right)
+                      + \left(\frac{t}{1+t}\right) \partial_{\tau}^{\,2} \ln \left(1-t^{-1}P(t)\right) \right) \\
+            &= \left(\partial_{a(\tau)}^{\,2} \tot{C}(t)\right) \left(-3 + \partial_{\tau} \ln \left(1-t^{-1}P(t)\right)\right)^{2}
+             + \left(\partial_{a(\tau)} \tot{C}(t)\right) \partial_{\tau}^{\,2} \ln \left(1-t^{-1}P(t)\right) \\
         \end{aligned}
     \end{equation}
     where
     \begin{equation}\label{eq:Exp:0a}
         \begin{aligned}
-            \partial_{a(S)}\tot{C}(t) &= -\tot{C}(t) \frac{E^{\prime\prime}(a(S))}{E^{\prime}(a(S))} - \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}} \frac{1}{a(S)^{2}E^{\prime}(a(S))}\\ 
-            \partial_{a(S)}^{\,2}\tot{C}(t)
-            &= \frac{2\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}}\frac{E^{\prime}(a(S)) + a(S) E^{\prime\prime}(a(S))}
-            {a(S)^{3}E^{\prime}(a(S))^{2}} + \tot{C}(t) \frac{2 E^{\prime\prime}(a(S))^{2} - E^{\prime}(a(S)) E^{\prime\prime\prime}(a(S))}{E^{\prime}(a(S))^2}
+            \partial_{a(\tau)}\tot{C}(t) &= -\tot{C}(t) \frac{E^{\prime\prime}(a(\tau))}{E^{\prime}(a(\tau))} - \frac{\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}} \frac{1}{a(\tau)^{2}E^{\prime}(a(\tau))}\\ 
+            \partial_{a(\tau)}^{\,2}\tot{C}(t)
+            &= \frac{2\dn{\norm{A}}}{\norm{I}\dn{\norm{C}}}\frac{E^{\prime}(a(\tau)) + a(\tau) E^{\prime\prime}(a(\tau))}
+            {a(\tau)^{3}E^{\prime}(a(\tau))^{2}} + \tot{C}(t) \frac{2 E^{\prime\prime}(a(\tau))^{2} - E^{\prime}(a(\tau)) E^{\prime\prime\prime}(a(\tau))}{E^{\prime}(a(\tau))^2}
         \end{aligned}
     \end{equation}
 
