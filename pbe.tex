@@ -77,7 +77,7 @@
     \begin{subequations} \label{def:CSD:TL}
         \begin{align}
             S(t) &\deq \max (S,1) \\
-            T &\deq \norm{\dn{L}}^{-1} \dn{\int_{0}^{t} G^{+} \, d{t}} 
+            T &\deq \norm{\dn{L}}^{-1} \dn{\int_{t^{*}}^{t} G^{+} \, d{t}} 
                 = \int_{0}^{t} \norm{G} \left(S(\dot{t})-1\right)^{\mds{g}} \!\dd{\dot{t}} \label{def:CSD:T} \\[3pt]
             L &\deq T -  \norm{\dn{L}}^{-1} \dn{L}
         \end{align}
@@ -87,7 +87,7 @@
     \begin{subequations} \label{def:CSD:Nf}
         \begin{align}
             N(\bb{R^{-}}) &\deq \set{0} \\
-            N(T) &\deq \dn{\int_{0}^{t} B^{+} V \, d\dot{t}} 
+            N(T) &\deq \dn{\int_{t^{*}}^{t} B^{+} V \, d\dot{t}} 
                 = \int_{0}^{t} \norm{B} \left(S(\dot{t})-1\right)^{\mds{b}} V(\dot{t}) \dd{\dot{t}} \label{def:CSD:N} \\[2pt]
             f(T,L) &\deq N(T)^{-1} \norm{\dn{L}}^{-1} \dn{V n(t,L)}
         \end{align}
@@ -120,20 +120,9 @@
 
     The CSD $N(T)^{-1} N(L)$ is the fraction of particles at `time' $T$ whose `length' does not exceed $L$, which is the same as the fraction of particles at `time' $T$ born by `time' $L$.
 
-\section{Taylor Approximation}\label{sec:Taylor}
     This Section determines the CSD from supersaturation $S(t)$ and volume $V(t)$, expanded about $t=\bar{t}$ as
-    \begin{equation} \label{def:s}
         \begin{aligned}
-            \ln (S(t)-1) &\phantom{:}= \pm \norm{\bar{\sigma}} \pm \norm{\bar{\sigma}^{\prime}} \left(t-\bar{t}\right) 
-                \pm \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
-                +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} 
-                \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \pm \lVert\bar{\sigma}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} \ln (S(\bar{t})-1) \\
             V(t) &\phantom{:}= \pm \norm{\bar{V}} \pm \norm{\bar{V}^{\prime}} \left(t-\bar{t}\right) 
-                \pm \norm{\bar{V}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
-                +  O \left(\norm{\bar{V}^{\prime\prime\prime}} 
-                \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \pm \lVert\bar{V}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} V(\bar{t})
         \end{aligned}
     \end{equation}
     The partial derivatives in the second line are normally provided by an exogenous model of supersaturation,
@@ -142,11 +131,7 @@
     Completing the square
     \begin{equation} \label{def:s}
         \begin{aligned}
-            \ln (S(t)-1) &\phantom{:}= \pm \norm{\bar{s}} 
-                \pm \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t\pm\norm{\bar{t}}\right)^{2}}{2} 
                 +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \pm\norm{\bar{t}} &\deq \bar{t} \mp\norm{\bar{\sigma}^{\prime}}(\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1} \\
-            \pm\norm{\bar{s}} &\deq \pm \norm{\bar{\sigma}} - \norm{\bar{\sigma}^{\prime}}^{2}(\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1}2^{-1}
         \end{aligned}
     \end{equation}
     so
