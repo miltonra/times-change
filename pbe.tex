@@ -72,16 +72,6 @@
     This work aims to elucidate the dimensionless empirical birth and growth parameters $\norm{B},\mds{b},\norm{G},\mds{g}$.
     
 
-\section{Asymptotic Taylor Expansion}\label{sec:Taylor}
-    \begin{subequations} \label{def:CSD:TL}
-        \begin{align}
-            S(t) &\deq \max (S,1) \\
-            T &\deq \norm{\dn{L}}^{-1} \dn{\int_{0}^{t} G^{+} \, d{t}} 
-                = \int_{0}^{t} \norm{G} \left(S(\dot{t})-1\right)^{\mds{g}} \!\dd{\dot{t}} \label{def:CSD:T} \\[3pt]
-            L &\deq T -  \norm{\dn{L}}^{-1} \dn{L}
-        \end{align}
-    \end{subequations}
-
 \section{The Crystal Size Distribution (CSD)}\label{sec:CSD}
     The Population Balance Equation conveys a symmetry between synthetic `time' $T$ and `length' $L$ defined as
     \begin{subequations} \label{def:CSD:TL}
@@ -92,7 +82,7 @@
             L &\deq T -  \norm{\dn{L}}^{-1} \dn{L}
         \end{align}
     \end{subequations}
-    
+    These forms are chosen to render the PBE linear and invariant to exchanging $T$ and $L$.
     This symmetry manifests in the particle count $N(T)f(T,L)$ defined as
     \begin{subequations} \label{def:CSD:Nf}
         \begin{align}
@@ -118,33 +108,66 @@
         \end{aligned}
     \end{equation}
 
-    The Crystal Size Distribution at `time' $T$ is $N(T)^{-1} N(L)$, its probability density $f(T, L)$, and its moments
+    The Crystal Size Distribution (CSD) at `time' $T$ is $N(T)^{-1} N(L)$, its probability density $f(T, L)$, and its moments
     \begin{equation} \label{def:CSD:M}
         \begin{aligned}
              M_m(T) &\deq \int_{0}^{T} f(T, L)(T-L)^{m} \dd{L} = N(T)^{-1} m \int_{0}^{T} N(\dot{T})M_{m-1}(\dot{T}) \dd{\dot{T}} \\
         \end{aligned}
     \end{equation}
+    The number of particles born by `time' $T$ is $N(T)$, and the number of particles whose `length' does not exceed $L$ is $N(L)$.
+    This is the symmetry conveyed by the PBE: `time' $T$ and `length' $L$ are effectively the same thing.
+    Like a growing child, a crystal equates how old it is with how big it is.
 
+    The CSD $N(T)^{-1} N(L)$ is the fraction of particles at `time' $T$ whose `length' does not exceed $L$, which is the same as the fraction of particles at `time' $T$ born by `time' $L$.
 
-\section{Initial Growth}\label{sec:TE}
-    Assuming that supersaturation grows exponentially at the start of the experiment, we define
-    \begin{equation} \label{def:SGE:s}
+\section{Taylor Approximation}\label{sec:Taylor}
+    This Section determines the CSD from supersaturation $S(t)$ and volume $V(t)$, expanded about $t=\bar{t}$ as
+    \begin{equation} \label{def:s}
         \begin{aligned}
-            \tau &\deq 3 \ln S(t) \\
-            t &\deq \mds{\partial_{\tau}t^{*}} \tau + O\left(\mds{\partial_{\tau}^{\,2}t^{*}}\frac{\tau^{2}}{2}\right)
+            \ln (S(t)-1) &\phantom{:}= \pm \norm{\bar{\sigma}} \pm \norm{\bar{\sigma}^{\prime}} \left(t-\bar{t}\right) 
+                \pm \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
+                +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} 
+                \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
+            \pm \lVert\bar{\sigma}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} \ln (S(\bar{t})-1) \\
+            V(t) &\phantom{:}= \pm \norm{\bar{V}} \pm \norm{\bar{V}^{\prime}} \left(t-\bar{t}\right) 
+                \pm \norm{\bar{V}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
+                +  O \left(\norm{\bar{V}^{\prime\prime\prime}} 
+                \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
+            \pm \lVert\bar{V}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} V(\bar{t})
         \end{aligned}
     \end{equation}
-    \Cref{def:CSD:T} integrates by parts to yield
-    \begin{equation} \label{eq:SGE:T}
+    The partial derivatives in the second line are normally provided by an exogenous model of supersaturation,
+    our sign convention dictating $\lVert\bar{\sigma}^{(n)}\rVert \geq 0$.
+
+    Completing the square
+    \begin{equation} \label{def:s}
         \begin{aligned}
-            T &= \norm{G} \int_{0}^{t} (S(\dot{t})-1)^{{\mds{g}}} \!\dd{\dot{t}} = \norm{G} \int_{0}^{t} \exp({\mds{g}}\tau)\left(1-\exp(-\tau)\right)^{{\mds{g}}} \!\dd{\dot{t}} \\
-                &= \norm{G} \sum_{k=0}^{\infty} \frac{(-t)^{k}t}{\Gamma(k+2)} \partial_{t}^{k} \left(\exp({\mds{g}}\tau)\left(1-\exp(-\tau)\right)^{{\mds{g}}}\right) \\
-                &= \norm{G} (S(t)-1)^{\mds{g}} t\left(1 + 
-                \sum_{j=1}^{\infty} \mds{g}^{j} \sum_{k=j}^{\infty} 
-                \frac{(-t)^{k} \, \partial_{t}^{k-j} \left(\tau + \ln\left(1-\exp(-\tau)\right)\right)^{j}}{(k+1)\Gamma(k-j+1)\Gamma(j+1)} \right)\\
-                &= \norm{G} t (S(t)-1)^{\mds{g}} \left(1 - \mds{g}
-                \sum_{k=1}^{\infty} \frac{(-t)^{k} \, \partial_{t}^{k-1} \left(\tau + \ln\left(1-\exp(-\tau)\right)\right)}{(k+1)\Gamma(k)} 
-                + O(\mds{g}^{2}) \right) \\
+            \ln (S(t)-1) &\phantom{:}= \pm \norm{\bar{s}} 
+                \pm \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t\pm\norm{\bar{t}}\right)^{2}}{2} 
+                +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
+            \pm\norm{\bar{t}} &\deq \bar{t} \mp\norm{\bar{\sigma}^{\prime}}(\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1} \\
+            \pm\norm{\bar{s}} &\deq \pm \norm{\bar{\sigma}} - \norm{\bar{\sigma}^{\prime}}^{2}(\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1}2^{-1}
+        \end{aligned}
+    \end{equation}
+    so
+    \begin{equation} \label{def:s}
+        \begin{aligned}
+            V(t) &\phantom{:}= \pm \norm{\bar{v}} \pm \norm{\bar{v}^{\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}}) 
+                \left(t\pm\norm{\bar{t}}\right) 
+                \pm \norm{\bar{v}^{\prime\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}})^{2} \left(t\pm\norm{\bar{t}}\right)^{2}
+                +  O \left(\norm{\bar{V}^{\prime\prime\prime}} \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
+            \pm \norm{\bar{v}^{\prime\prime}} &\deq \pm \norm{\bar{V}^{\prime\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}})^{-2}2^{-1} \\
+            \pm \norm{\bar{v}^{\prime}} &\deq \pm \norm{\bar{V}^{\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1} 
+            \pm \norm{\bar{v}^{\prime\prime}} (\pm\norm{\bar{\sigma}^{\prime}}) 2 \\
+        \end{aligned}
+    \end{equation}
+
+    Asymptotic `time' $T$ is determined as
+    \begin{equation} \label{eq:Taylor:T}
+        \begin{aligned}
+            T &= \norm{G} \int_{0}^{t} (S(\dot{t})-1)^{{\mds{g}}} \!\dd{\dot{t}}
+            = \norm{G} \int_{0}^{t} \exp\left(\mds{g} \ln(S(\dot{t})-1) \right) \!\dd{\dot{t}} \\
+            &= \norm{G} \int_{0}^{t} \left(1 + \mds{g} \ln(S(\dot{t})-1) + O(\mds{g}^{2})\right) \!\dd{\dot{t}} \\
         \end{aligned}
     \end{equation}
 
