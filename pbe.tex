@@ -124,16 +124,16 @@
     This Section determines the CSD from supersaturation $S(t)$ and volume $V(t)$, expanded about $t=\bar{t}$ as
     \begin{equation} \label{def:s}
         \begin{aligned}
-            \ln (S(t)-1) &\phantom{:}= \pm \norm{\bar{\sigma}} \pm \norm{\bar{\sigma}^{\prime}} \left(t-\bar{t}\right) 
-                \pm \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
+            \ln (S(t)-1) &\phantom{:}= \norm{\bar{\sigma}} + \norm{\bar{\sigma}^{\prime}} \left(t-\bar{t}\right) 
+                + \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
                 +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} 
                 \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \pm \lVert\bar{\sigma}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} \ln (S(\bar{t})-1) \\
-            V(t) &\phantom{:}= \pm \norm{\bar{V}} \pm \norm{\bar{V}^{\prime}} \left(t-\bar{t}\right) 
-                \pm \norm{\bar{V}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
+            \lVert\bar{\sigma}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} \ln (S(\bar{t})-1) \\
+            V(t) &\phantom{:}= \norm{\bar{V}} + \norm{\bar{V}^{\prime}} \left(t-\bar{t}\right) 
+                + \norm{\bar{V}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
                 +  O \left(\norm{\bar{V}^{\prime\prime\prime}} 
                 \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \pm \lVert\bar{V}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} V(\bar{t})
+            \lVert\bar{V}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} V(\bar{t})
         \end{aligned}
     \end{equation}
     The partial derivatives in the second line are normally provided by an exogenous model of supersaturation,
@@ -142,23 +142,24 @@
     Completing the square
     \begin{equation} \label{def:s}
         \begin{aligned}
-            \ln (S(t)-1) &\phantom{:}= \pm \norm{\bar{s}} 
-                \pm \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t\pm\norm{\bar{t}}\right)^{2}}{2} 
+            \ln (S(t)-1) &\phantom{:}= \langle\bar{s}\rangle 
+                + \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t-\norm{\bar{t}}\right)^{2}}{2} 
                 +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \pm\norm{\bar{t}} &\deq \bar{t} \mp\norm{\bar{\sigma}^{\prime}}(\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1} \\
-            \pm\norm{\bar{s}} &\deq \pm \norm{\bar{\sigma}} - \norm{\bar{\sigma}^{\prime}}^{2}(\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1}2^{-1}
+            \norm{\bar{t}} &\deq \bar{t} -\norm{\bar{\sigma}^{\prime}}\norm{\bar{\sigma}^{\prime\prime}}^{-1} \\
+            \norm{\bar{s}} &\deq \norm{\bar{\sigma}} - 2^{-1} \norm{\bar{\sigma}^{\prime}}^{2}\norm{\bar{\sigma}^{\prime\prime}}^{-1}
         \end{aligned}
     \end{equation}
     so
     \begin{equation} \label{def:s}
         \begin{aligned}
-            V(t) &\phantom{:}= \pm \norm{\bar{v}} \pm \norm{\bar{v}^{\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}}) 
-                \left(t\pm\norm{\bar{t}}\right) 
-                \pm \norm{\bar{v}^{\prime\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}})^{2} \left(t\pm\norm{\bar{t}}\right)^{2}
+            V(t) &\phantom{:}= \norm{\bar{v}} + \norm{\bar{v}^{\prime}} \norm{\bar{\sigma}^{\prime\prime}} 
+                \left(t-\norm{\bar{t}}\right) 
+                + \norm{\bar{v}^{\prime\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{2} \left(t-\norm{\bar{t}}\right)^{2}
                 +  O \left(\norm{\bar{V}^{\prime\prime\prime}} \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \pm \norm{\bar{v}^{\prime\prime}} &\deq \pm \norm{\bar{V}^{\prime\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}})^{-2}2^{-1} \\
-            \pm \norm{\bar{v}^{\prime}} &\deq \pm \norm{\bar{V}^{\prime}} (\pm\norm{\bar{\sigma}^{\prime\prime}})^{-1} 
-            \pm \norm{\bar{v}^{\prime\prime}} (\pm\norm{\bar{\sigma}^{\prime}}) 2 \\
+            \norm{\bar{v}^{\prime\prime}} &\deq \norm{\bar{V}^{\prime\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{-2}2^{-1} \\
+            \norm{\bar{v}^{\prime}} &\deq \norm{\bar{V}^{\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{-1} 
+            - 2 \norm{\bar{v}^{\prime\prime}} \norm{\bar{\sigma}^{\prime}} \\
+            \norm{\bar{v}} &\deq \norm{\bar{V}^{\prime\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{-2}2^{-1} \\
         \end{aligned}
     \end{equation}
 
