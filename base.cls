@@ -92,3 +92,5 @@
 \DeclareMathOperator*{\trace}{tr\!}
 \DeclareMathOperator*{\sgn}{sgn}
 \DeclareMathOperator*{\LW}{LambertW}
+\DeclareMathOperator*{\erf}{erf}
+\DeclareMathOperator*{\erfc}{erfc}

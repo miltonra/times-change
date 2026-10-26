@@ -36,7 +36,7 @@
         \begin{aligned}
             \dn{\partial_{t} (V n(t,L))} &= -\dn{G^{+} \pdn{L} (V \dn{n}(t,L))}\\
             \dn{n(0, L)} &= 0 \\
-            \dn{n(t,0)} &= \dn{B^{+}/G^{+}}
+            \dn{n(t,0)} &= \dn{B^{+}/\; G^{+}}
         \end{aligned}
     \end{equation}
     where $\dn{B^{+}}$ \un{m^{-3}s^{-1}} and $\dn{G^{+}}$ \un{m\,s^{-1}} are particle birth (nucleation) and growth rates. These relate empirically to supersaturation $S>1$:
@@ -111,7 +111,8 @@
     The Crystal Size Distribution (CSD) at `time' $T$ is $N(T)^{-1} N(L)$, its probability density $f(T, L)$, and its moments
     \begin{equation} \label{def:CSD:M}
         \begin{aligned}
-             M_m(T) &\deq \int_{0}^{T} f(T, L)(T-L)^{m} \dd{L} = N(T)^{-1} m \int_{0}^{T} N(\dot{T})M_{m-1}(\dot{T}) \dd{\dot{T}} \\
+             M_0(T) &\deq \int_{0}^{T} f(T, L)(T-L)^{0} \dd{L} \;= N(T)^{-1}N(T) = 1 \\
+             M_m(T) &\deq \int_{0}^{T} f(T, L)(T-L)^{m} \dd{L} = N(T)^{-1} m \int_{0}^{T} N(L)M_{m-1}(L) \dd{L}
         \end{aligned}
     \end{equation}
     The number of particles born by `time' $T$ is $N(T)$, and the number of particles whose `length' does not exceed $L$ is $N(L)$.
@@ -122,53 +123,82 @@
 
 \section{Taylor Approximation}\label{sec:Taylor}
     This Section determines the CSD from supersaturation $S(t)$ and volume $V(t)$, expanded about $t=\bar{t}$ as
-    \begin{equation} \label{def:s}
+    \begin{equation} \label{def:Taylor:s}
         \begin{aligned}
-            \ln (S(t)-1) &\phantom{:}= \norm{\bar{\sigma}} + \norm{\bar{\sigma}^{\prime}} \left(t-\bar{t}\right) 
-                + \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
-                +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} 
-                \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \lVert\bar{\sigma}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} \ln (S(\bar{t})-1) \\
-            V(t) &\phantom{:}= \norm{\bar{V}} + \norm{\bar{V}^{\prime}} \left(t-\bar{t}\right) 
-                + \norm{\bar{V}^{\prime\prime}} \frac{\left(t-\bar{t}\right)^{2}}{2} 
-                +  O \left(\norm{\bar{V}^{\prime\prime\prime}} 
-                \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \lVert\bar{V}^{(n)}\rVert &\deq \partial_{\bar{t}}^{\,n} V(\bar{t})
+            \ln (S(t)-1) &\phantom{:}= \sum_{k=0}^{K} \frac{\bar{\sigma}^{(k)}}{\Gamma(k+1)} \left(t-\bar{t}\right)^{k}
+                +  O \left(\frac{\bar{\sigma}^{(K+1)}}{\Gamma(K+2)}\left(t-\bar{t}\right)^{K+1}\right)\\
+            \QT{where}\bar{\sigma}^{(k)} &\deq \partial_{\bar{t}}^{\,k} \ln (S(\bar{t})-1) \\
+            V(t) &\phantom{:}= \sum_{k=0}^{K} \frac{\bar{V}^{(k)}}{\Gamma(k+1)} \left(t-\bar{t}\right)^{k}
+                +  O \left(\bar{V}^{(K+1)} \frac{\left(t-\bar{t}\right)^{K+1}}{\Gamma(K+2)}\right)\\
+            \QT{where}\bar{V}^{(k)} &\deq \partial_{\bar{t}}^{\,k} V(\bar{t})
         \end{aligned}
     \end{equation}
-    The partial derivatives in the second line are normally provided by an exogenous model of supersaturation,
-    our sign convention dictating $\lVert\bar{\sigma}^{(n)}\rVert \geq 0$.
+    The partial derivatives here are normally provided by an exogenous model of supersaturation and mixing.
 
-    Completing the square
-    \begin{equation} \label{def:s}
+
+\subsection{Linear Approximation}\label{sec:Lin}
+    Taking $K=1$ requires
+    \begin{equation} \label{sol:Quad:N}
         \begin{aligned}
-            \ln (S(t)-1) &\phantom{:}= \langle\bar{s}\rangle 
-                + \norm{\bar{\sigma}^{\prime\prime}} \frac{\left(t-\norm{\bar{t}}\right)^{2}}{2} 
-                +  O \left(\norm{\bar{\sigma}^{\prime\prime\prime}} \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \norm{\bar{t}} &\deq \bar{t} -\norm{\bar{\sigma}^{\prime}}\norm{\bar{\sigma}^{\prime\prime}}^{-1} \\
-            \norm{\bar{s}} &\deq \norm{\bar{\sigma}} - 2^{-1} \norm{\bar{\sigma}^{\prime}}^{2}\norm{\bar{\sigma}^{\prime\prime}}^{-1}
+           \bar{\sigma}^{\prime} > 0
         \end{aligned}
     \end{equation}
-    so
-    \begin{equation} \label{def:s}
+    Integrating \Cref{def:CSD:N} using \Cref{def:Taylor:s} with $K=1$ yields
+    \begin{equation} \label{sol:Lin:N}
         \begin{aligned}
-            V(t) &\phantom{:}= \norm{\bar{v}} + \norm{\bar{v}^{\prime}} \norm{\bar{\sigma}^{\prime\prime}} 
-                \left(t-\norm{\bar{t}}\right) 
-                + \norm{\bar{v}^{\prime\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{2} \left(t-\norm{\bar{t}}\right)^{2}
-                +  O \left(\norm{\bar{V}^{\prime\prime\prime}} \frac{\left(t-\bar{t}\right)^{3}}{6}\right)\\
-            \norm{\bar{v}^{\prime\prime}} &\deq \norm{\bar{V}^{\prime\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{-2}2^{-1} \\
-            \norm{\bar{v}^{\prime}} &\deq \norm{\bar{V}^{\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{-1} 
-            - 2 \norm{\bar{v}^{\prime\prime}} \norm{\bar{\sigma}^{\prime}} \\
-            \norm{\bar{v}} &\deq \norm{\bar{V}^{\prime\prime}} \norm{\bar{\sigma}^{\prime\prime}}^{-2}2^{-1} \\
+            \norm{N}^{-1} N(T) &\phantom{:}= \left(\bar{v} + \bar{V}^{\prime}t\right) \exp \left(\norm{b} t\right) - \bar{v} \\
+            \QT{where}\norm{b} &\deq \mds{b}\bar{\sigma}^{\prime} \\
+            \norm{\bar{\sigma}} &\deq \mds{b}\bar{\sigma}-\norm{b} \bar{t} \\
+            \norm{N} &\deq \norm{B} \norm{b}^{-1} \exp \norm{\bar{\sigma}} \\
+            \bar{v} &\deq \bar{V} - \bar{V}^{\prime}\bar{t} - \bar{V}^{\prime} \norm{b}^{-1}
+        \end{aligned}
+    \end{equation}
+    Substituting \Cref{def:Taylor:s} with $K=1$ in \Cref{def:CSD:TL} for small $\mds{g}$
+    \begin{equation} \label{sol:Lin:dtT}
+        \begin{aligned}
+            \partial_{t} L &= \partial_{t} T = \norm{G} + \frac{\mds{g}}{\mds{b}} \norm{G} \left(\norm{b} t + \norm{\bar{\sigma}}\right) + O(\mds{g}^{2}) \\
+        \end{aligned}
+    \end{equation}
+    which integrates over $t\in\closed{0}{T}$ to yield
+    \begin{equation} \label{sol:Lin:t}
+        \begin{aligned}
+            t &= \frac{T}{\norm{G}} - \frac{\mds{g}}{\mds{b}}\frac{T}{\norm{G}} \left(\frac{\norm{b}}{2}\frac{T}{\norm{G}} + \norm{\bar{\sigma}}\right) 
+                + O(\mds{g}^{2})
         \end{aligned}
     \end{equation}
 
-    Asymptotic `time' $T$ is determined as
-    \begin{equation} \label{eq:Taylor:T}
+
+\subsection{Quadratic Approximation}\label{sec:Quad}
+    Taking $K=2$, integration ``completes the square'', effectively shifting $\bar{t}$ to the maximum of $\ln (S{t}-1)$ so that
+    \begin{equation} \label{sol:Quad:N}
         \begin{aligned}
-            T &= \norm{G} \int_{0}^{t} (S(\dot{t})-1)^{{\mds{g}}} \!\dd{\dot{t}}
-            = \norm{G} \int_{0}^{t} \exp\left(\mds{g} \ln(S(\dot{t})-1) \right) \!\dd{\dot{t}} \\
-            &= \norm{G} \int_{0}^{t} \left(1 + \mds{g} \ln(S(\dot{t})-1) + O(\mds{g}^{2})\right) \!\dd{\dot{t}} \\
+           \bar{\sigma}^{\prime} \deq 0 > \bar{\sigma}^{\prime\prime}
+        \end{aligned}
+    \end{equation}
+    Integrating \Cref{def:CSD:N} using \Cref{def:Taylor:s} with $K=2$ yields
+    \begin{equation} \label{sol:Quad:N}
+        \begin{aligned}
+            \norm{N}^{-1} N(T) &\phantom{:}= \bar{v} \left(\erf(\norm{b}(t-\bar{t}))+\erf(\norm{b}\bar{t})\right)  
+             - \left(\frac{\bar{V}^{\prime\prime}}{2}t + \bar{v}^{\prime}\right) \exp\left(\norm{b}^{2}t(2\bar{t}-t)\right)
+            + \bar{v}^{\prime} \\
+            \QT{where}\norm{b} &\deq \mds{\frac{\mds{b}\bar{\sigma}^{\prime\prime}}{2}}^{1/2} \\
+            \norm{\bar{\sigma}} &\deq \mds{b}\bar{\sigma}-\norm{b}^2 \bar{t}^2 \\
+            \norm{N} &\deq \frac{\norm{B}\exp \norm{\bar{\sigma}}} {2\norm{b}^{2}}  \\
+            \bar{v} &\deq \norm{b} \pi^{1/2} \exp \left(\norm{b}^{2}\bar{t}^{2}\right) \left(\bar{V} + \frac{\bar{V}^{\prime\prime}}{4\norm{b}^{2}}\right) \\
+            \bar{v}^{\prime} &\deq \bar{V}^{\prime} - \frac{\bar{V}^{\prime\prime}\bar{t}}{2}\\
+        \end{aligned}
+    \end{equation}
+    Substituting \Cref{def:Taylor:s} with $K=2$ in \Cref{def:CSD:T} for small $\mds{g}$
+    \begin{equation} \label{sol:Quad:dtT}
+        \begin{aligned}
+            \partial_{t} T &= \norm{G} + \frac{\mds{g}}{\mds{b}} \norm{G} \left(\norm{b}^{2}t(2\bar{t}-t) + \norm{\bar{\sigma}}\right) + O(\mds{g}^{2}) \\
+        \end{aligned}
+    \end{equation}
+    which integrates to yield
+    \begin{equation} \label{sol:Quad:t}
+        \begin{aligned}
+            t &= \frac{T}{\norm{G}} - \frac{\mds{g}}{\mds{b}}\frac{T}{\norm{G}} 
+            \left(\norm{b}^{2} \frac{T}{\norm{G}} \left(\bar{t}-\frac{1}{3}\frac{T}{\norm{G}}\right) + \norm{\bar{\sigma}}\right) + O(\mds{g}^{2})
         \end{aligned}
     \end{equation}
 
