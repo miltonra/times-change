@@ -153,20 +153,23 @@
             \bar{v} &\deq \bar{V} - \bar{V}^{\prime}\bar{t} - \bar{V}^{\prime} \norm{b}^{-1}
         \end{aligned}
     \end{equation}
-    Substituting \Cref{def:Taylor:s} with $K=1$ in \Cref{def:CSD:TL} for small $\mds{g}$
-    \begin{equation} \label{sol:Lin:dtT}
-        \begin{aligned}
-            \partial_{t} L &= \partial_{t} T = \norm{G} + \frac{\mds{g}}{\mds{b}} \norm{G} \left(\norm{b} t + \norm{\bar{\sigma}}\right) + O(\mds{g}^{2}) \\
-        \end{aligned}
-    \end{equation}
-    which integrates over $t\in\closed{0}{T}$ to yield
+    Integrating \Cref{def:CSD:T} for small $\mds{g}$ using \Cref{def:Taylor:s} with $K=1$ yields
     \begin{equation} \label{sol:Lin:t}
         \begin{aligned}
             t &= \frac{T}{\norm{G}} - \frac{\mds{g}}{\mds{b}}\frac{T}{\norm{G}} \left(\frac{\norm{b}}{2}\frac{T}{\norm{G}} + \norm{\bar{\sigma}}\right) 
                 + O(\mds{g}^{2})
         \end{aligned}
     \end{equation}
-
+    so
+    \begin{equation} \label{sol:Lin:CSD}
+        \begin{aligned}
+            \norm{N}^{-1} N(T) &= \left(\bar{v} + \bar{V}^{\prime}\frac{T}{\norm{G}}\right) \exp \left(\norm{b} \frac{T}{\norm{G}}\right) - \bar{v} \\
+            &\phantom{=\ }-\frac{\mds{g}}{\mds{b}}\frac{T}{\norm{G}} \left(\frac{\norm{b}}{2}\frac{T}{\norm{G}} + \norm{\bar{\sigma}}\right)
+                 \exp \left(\norm{b} \frac{T}{\norm{G}}\right)
+                 \left(\norm{b}\left(\bar{v} + \bar{V}^{\prime}\frac{T}{\norm{G}}\right) + \bar{V}^{\prime}\right) \\
+            &\phantom{=\ }+ O(\mds{g}^{2})
+        \end{aligned}
+    \end{equation}
 
 \subsection{Quadratic Approximation}\label{sec:Quad}
     Taking $K=2$, integration ``completes the square'', effectively shifting $\bar{t}$ to the maximum of $\ln (S{t}-1)$ so that
@@ -188,13 +191,7 @@
             \bar{v}^{\prime} &\deq \bar{V}^{\prime} - \frac{\bar{V}^{\prime\prime}\bar{t}}{2}\\
         \end{aligned}
     \end{equation}
-    Substituting \Cref{def:Taylor:s} with $K=2$ in \Cref{def:CSD:T} for small $\mds{g}$
-    \begin{equation} \label{sol:Quad:dtT}
-        \begin{aligned}
-            \partial_{t} T &= \norm{G} + \frac{\mds{g}}{\mds{b}} \norm{G} \left(\norm{b}^{2}t(2\bar{t}-t) + \norm{\bar{\sigma}}\right) + O(\mds{g}^{2}) \\
-        \end{aligned}
-    \end{equation}
-    which integrates to yield
+    Integrating \Cref{def:CSD:T} for small $\mds{g}$ using \Cref{def:Taylor:s} with $K=1$ yields
     \begin{equation} \label{sol:Quad:t}
         \begin{aligned}
             t &= \frac{T}{\norm{G}} - \frac{\mds{g}}{\mds{b}}\frac{T}{\norm{G}} 
